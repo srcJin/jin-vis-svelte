@@ -1,0 +1,135 @@
+html {
+    color-scheme: dark;
+}
+
+
+/* Define accent color and make it available globally */
+:root {
+    --color-accent: oklch(65% 50% 0); /* Customize this value if you'd like a different accent color */
+    --color-accent-light: oklch(95% 5% 0); /* Lighter version with same hue */
+
+  }
+
+
+/* Styling for the body */
+body {
+    /* Use the system UI font, set the base font size to 100% of the user's setting and the line height to 1.5 */
+    font: 100%/1.5 system-ui;
+    /* Limit the maximum width to 100 characters */
+    max-width: 100ch;
+    /* Center the content horizontally */
+    margin-inline: auto;
+    /* Add padding around the content */
+    padding: 1em;
+    accent-color: var(--color-accent)
+}
+
+/* Resetting the <ul> and <li> elements in the navigation to not affect layout and styling */
+nav ul, nav li {
+    display: contents;
+}
+
+
+nav {
+    display: flex;
+    text-align: center;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    justify-content: space-between;
+    /* border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: oklch(80% 3% 200) */
+    --border-color: oklch(50% 10% 200 / 40%);
+    border-bottom: 1px solid var(--border-color);    /* Cool gray bottom border */
+    
+}
+
+nav a {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Use parent text color */
+    text-align: center; /* Center text */
+    flex: 1; /* Flex each link to take up equal space */
+    padding: 0.5em; /* Add spacing around the links */
+  }
+  
+nav a.current {
+border-bottom: 0.4em solid oklch(80% 3% 200); /* Thick bottom border for current link */
+
+}
+
+nav a:hover {
+    border-bottom: 0.4em solid var(--color-accent);
+    background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
+}
+
+/* Styling for the form element */
+
+/* Ensure all form controls inherit the font from their parent */
+input, textarea, button {
+    font: inherit;
+}
+
+
+
+/* Apply grid layout to the form */
+form {
+    display: grid;
+    grid-template-columns: auto 1fr; /* First column for labels, second column for inputs */
+    gap: 1em; /* Space between rows and between label/input columns */
+    align-items: center; /* Vertically align inputs with labels */
+    width: 100%;
+    max-width: 600px; /* Optional: limit max width of the form */
+    margin: 0 auto; /* Center the form horizontally */
+}
+
+.form-group {
+    display: contents; /* Allows both label and input to be placed directly in the form grid */
+}
+
+form label {
+    grid-column: 1; /* Label in the first column */
+}
+
+form input, form textarea {
+    grid-column: 2; /* Input/textarea in the second column */
+    width: 100%; /* Ensure the input/textarea takes up full width of the column */
+    box-sizing: border-box;
+    padding: 0.5em;
+}
+
+form button {
+    grid-column: 1 / -1; /* Make the button span both columns */
+    padding: 0.5em 1em;
+    background-color: var(--color-accent); /* Replace with your accent color */
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 1em;
+    text-align: center;
+}
+
+image {
+    max-width: 100%;  /* Ensure images don't exceed their container */
+}
+
+.projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr)); /* Ensures responsive columns */
+    gap: 1em; /* Space between grid items */
+    margin-top: 1em;
+}
+
+.projects article {
+    display: grid;
+    grid-template-rows: subgrid; /* Use the subgrid for row alignment */
+    grid-row: span 3; /* Span each article across 3 rows */
+    gap: 0.5em; /* Add spacing between elements inside each article */
+}
+
+.projects h2 {
+    margin: 0; /* Remove default margin to prevent excessive spacing */
+}
+
+h1 {
+    size: 400%
+}

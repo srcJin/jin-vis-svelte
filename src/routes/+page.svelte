@@ -1,2 +1,7 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<svelte:head>
+<title>Home</title>
+</svelte:head>
+
+<h1> Jin Gao </h1>
+<p> Jin is a passionate designer and tech lover! </p>
+<img src="images/tim.jpg" alt="Tim's photo" width="200" height="200">
