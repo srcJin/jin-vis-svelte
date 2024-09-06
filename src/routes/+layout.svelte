@@ -10,13 +10,23 @@ let pages = [
     { url: "https://github.com/srcJin", title: "GitHub" }
 ];
 
-let colorScheme = "light dark"
+
+let localStorage = globalThis.localStorage ?? {};
+let colorScheme = localStorage.colorScheme ? localStorage.colorScheme : "light dark";
+$: localStorage.colorScheme = colorScheme;
+
 let root = globalThis?.document?.documentElement;
 $: root?.style.setProperty("color-scheme", colorScheme);
 
-// Lab 5 Step 1: Port the theme switcher to Svelte
+
 
 </script>
+
+
+
+
+
+<!-- Lab 5 Step 1: Port the theme switcher to Svelte -->
 
 <label class="color-scheme" style="position: absolute; top: 1rem; right: 1rem; font-size: 80%;">
     Theme:
@@ -46,7 +56,7 @@ $: root?.style.setProperty("color-scheme", colorScheme);
 <style>
 
 /* Resetting the <ul> and <li> elements in the navigation to not affect layout and styling */
-    nav ul, nav li {
+nav ul, nav li {
     display: contents;
 }
 

@@ -2,9 +2,14 @@
 <title>About me</title>
 </svelte:head>
 
+<script>
+import GitHubStats from '$lib/GitHubStats.svelte';
+</script>
+
 <section>
     <header>
         <h1>John Doe</h1>
+        <GitHubStats username="srcJin" />
         <p>Software Developer | Web Designer</p>
     </header>
     <img src="../images/tim.jpg" alt="John Doe" style="width:100px;height:100px;">
