@@ -4,6 +4,7 @@
 
 <script>
     import projects from '$lib/projects.json';
+    import Project from '$lib/Project.svelte';
     </script>
     
 
@@ -18,11 +19,17 @@
 <h1> {projects.length} projects </h1>
 
 <div class="projects">
-    {#each projects as p}
-	<article>
-		<h2>{p.title}</h2>
-		<img src={p.image} alt="">
-		<p>{p.description}</p>
-	</article>
-{/each}
+    {#each projects as project}
+    <Project data={project} hLevel=3 />
+  {/each}
+  
 </div>
+
+<style>
+.projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr)); /* Ensures responsive columns */
+    gap: 1em; /* Space between grid items */
+    margin-top: 1em;
+}
+</style>

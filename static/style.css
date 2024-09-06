@@ -112,23 +112,7 @@ image {
     max-width: 100%;  /* Ensure images don't exceed their container */
 }
 
-.projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr)); /* Ensures responsive columns */
-    gap: 1em; /* Space between grid items */
-    margin-top: 1em;
-}
 
-.projects article {
-    display: grid;
-    grid-template-rows: subgrid; /* Use the subgrid for row alignment */
-    grid-row: span 3; /* Span each article across 3 rows */
-    gap: 0.5em; /* Add spacing between elements inside each article */
-}
-
-.projects h2 {
-    margin: 0; /* Remove default margin to prevent excessive spacing */
-}
 
 h1 {
     size: 400%
