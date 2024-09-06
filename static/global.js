@@ -58,45 +58,48 @@ const ARE_WE_HOME = document.documentElement.classList.contains("home");
 // lab 3 Step 4: Create the color mode switch and add it to the page
 
 // Step 4.2: Detect the OS color scheme and adjust the text in the dropdown
-let osPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-let automaticLabel = osPrefersDark ? "Automatic (Dark)" : "Automatic (Light)";
+// let osPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+// let automaticLabel = osPrefersDark ? "Automatic (Dark)" : "Automatic (Light)";
 
-// Step 4.3: Add the dark mode switch
-document.body.insertAdjacentHTML("afterbegin", `
-    <label class="color-scheme" style="position: absolute; top: 1rem; right: 1rem; font-size: 80%;">
-        Theme:
-        <select id="color-scheme-select">
-            <option value="light dark">${automaticLabel}</option>
-            <option value="light">Light</option>
-            <option value="dark">Dark</option>
-        </select>
-    </label>
-`);
+// // Step 4.3: Add the dark mode switch
+// document.body.insertAdjacentHTML("afterbegin", `
+//     <label class="color-scheme" style="position: absolute; top: 1rem; right: 1rem; font-size: 80%;">
+//         Theme:
+//         <select id="color-scheme-select">
+//             <option value="light dark">${automaticLabel}</option>
+//             <option value="light">Light</option>
+//             <option value="dark">Dark</option>
+//         </select>
+//     </label>
+// `);
 
-// Step 4.4: Actually making the switch work
-const select = document.querySelector('#color-scheme-select');
+// // Step 4.4: Actually making the switch work
+// const select = document.querySelector('#color-scheme-select');
 
-// Function to set the color scheme
-function setColorScheme(scheme) {
-    document.documentElement.style.setProperty("color-scheme", scheme);
-}
+// // Function to set the color scheme
+// function setColorScheme(scheme) {
+//     document.documentElement.style.setProperty("color-scheme", scheme);
+// }
 
-// Apply saved theme or default to auto
-if ("colorScheme" in localStorage) {
-    const savedScheme = localStorage.colorScheme;
-    setColorScheme(savedScheme);
-    select.value = savedScheme; // Sync dropdown with saved value
-} else {
-    setColorScheme("light dark");
-}
+// // Apply saved theme or default to auto
+// if ("colorScheme" in localStorage) {
+//     const savedScheme = localStorage.colorScheme;
+//     setColorScheme(savedScheme);
+//     select.value = savedScheme; // Sync dropdown with saved value
+// } else {
+//     setColorScheme("light dark");
+// }
 
-// Step 4.4: Adding event listener for changes to the color scheme
-select.addEventListener("input", function(event) {
-    const selectedScheme = event.target.value;
-    console.log("color scheme changed to", selectedScheme);
-    setColorScheme(selectedScheme);
-    localStorage.colorScheme = selectedScheme; // Save preference to localStorage
-});
+// // Step 4.4: Adding event listener for changes to the color scheme
+// select.addEventListener("input", function(event) {
+//     const selectedScheme = event.target.value;
+//     console.log("color scheme changed to", selectedScheme);
+//     setColorScheme(selectedScheme);
+//     localStorage.colorScheme = selectedScheme; // Save preference to localStorage
+// });
+
+
+
 
 
 // Step 4.5 better contact form

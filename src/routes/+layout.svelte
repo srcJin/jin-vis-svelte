@@ -9,7 +9,24 @@ let pages = [
     { url: "cv", title: "CV" },
     { url: "https://github.com/srcJin", title: "GitHub" }
 ];
+
+let colorScheme = "light dark"
+let root = globalThis?.document?.documentElement;
+$: root?.style.setProperty("color-scheme", colorScheme);
+
+// Lab 5 Step 1: Port the theme switcher to Svelte
+
 </script>
+
+<label class="color-scheme" style="position: absolute; top: 1rem; right: 1rem; font-size: 80%;">
+    Theme:
+    <select id="color-scheme-select" bind:value={ colorScheme }>
+        <option value="light dark">Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
+
 <nav>
     {#each pages as p}
     <a 
