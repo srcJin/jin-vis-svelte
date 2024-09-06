@@ -21,39 +21,39 @@ currentLink?.classList.add("current");
 
 
 // Define the pages array with URLs and titles
-let pages = [
-    { url: "./", title: "Home" },
-    { url: "projects", title: "Projects" },
-    { url: "contact", title: "Contact" },
-    { url: "cv", title: "CV" }
-];
+// let pages = [
+//     { url: "./", title: "Home" },
+//     { url: "projects", title: "Projects" },
+//     { url: "contact", title: "Contact" },
+//     { url: "cv", title: "CV" }
+// ];
 
-// Create a new <nav> element and add it to the body
-let nav = document.createElement("nav");
-document.body.prepend(nav);
+// // Create a new <nav> element and add it to the body
+// let nav = document.createElement("nav");
+// document.body.prepend(nav);
 
 const ARE_WE_HOME = document.documentElement.classList.contains("home");
 
 // Loop through each page in the pages array and create the navigation links
-for (let p of pages) {
-    let url = p.url;
-    let title = p.title;
+// for (let p of pages) {
+//     let url = p.url;
+//     let title = p.title;
 
-    // Adjust the URL if we're not on the homepage and the URL is not absolute
-    url = !ARE_WE_HOME && !url.startsWith("http") ? "../" + url : url;
+//     // Adjust the URL if we're not on the homepage and the URL is not absolute
+//     url = !ARE_WE_HOME && !url.startsWith("http") ? "../" + url : url;
 
-    // Insert the link into the nav element
-    let a = document.createElement("a");
-    a.href = url;
-    a.textContent = title;
+//     // Insert the link into the nav element
+//     let a = document.createElement("a");
+//     a.href = url;
+//     a.textContent = title;
 
-    if (a.host === location.host && a.pathname === location.pathname) {
-        a.classList.add("current");
-    }
+//     if (a.host === location.host && a.pathname === location.pathname) {
+//         a.classList.add("current");
+//     }
 
-    nav.append(a);
+//     nav.append(a);
 
-}
+// }
 
 // lab 3 Step 4: Create the color mode switch and add it to the page
 
