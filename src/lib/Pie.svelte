@@ -21,6 +21,11 @@
 
   export let selectedIndex = -1;
 
+  function toggleWedge(index, event) {
+    if (!event.key || event.key === "Enter") {
+      selectedIndex = index;
+    }
+  }
 </script>
 
 <div class="container">
@@ -30,13 +35,22 @@
         d={arc}
         fill={colors(index)}
         class:selected={selectedIndex === index}
-        on:click={(e) => (selectedIndex = selectedIndex  === index ? -1 : index)}
+        tabindex="0"
+        role="button"
+        aria-label={`Select ${data[index].label} slice`}
+        on:click={(event) => toggleWedge(index, event)}
+        on:keyup={(event) => toggleWedge(index, event)}
+        on:keydown={(event) => handleKeydown(event, index)}
+        style="cursor: pointer;"
       />
     {/each}
   </svg>
   <ul class="legend">
     {#each data as d, index}
-      <li style="--color: {colors(index)}" class:selected={selectedIndex === index}>
+      <li
+        style="--color: {colors(index)}"
+        class:selected={selectedIndex === index}
+      >
         <span class="swatch"></span>
         {d.label} <em>({d.value})</em>
       </li>
@@ -59,9 +73,16 @@
     }
   }
 
+  svg:has(path:hover, path:focus-visible) {
+    path:not(:hover, :focus-visible) {
+      opacity: 50%;
+    }
+  }
+
   path {
     transition: 300ms;
     cursor: pointer;
+    outline: none;
   }
 
   .container {

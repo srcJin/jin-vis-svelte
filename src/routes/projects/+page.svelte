@@ -57,6 +57,8 @@
     ? filteredProjects.filter(project => project.year === selectedYear)
     : filteredProjects;
 
+
+
 </script>
 
 <svelte:head>
