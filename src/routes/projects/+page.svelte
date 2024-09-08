@@ -5,6 +5,7 @@
 <script>
     import projects from '$lib/projects.json';
     import Project from '$lib/Project.svelte';
+    import Pie from '$lib/Pie.svelte';
     </script>
     
 
@@ -23,6 +24,10 @@
     <Project data={project} hLevel=3 />
   {/each}
   
+</div>
+
+<div>
+    <Pie />
 </div>
 
 <style>
