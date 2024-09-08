@@ -1,33 +1,102 @@
 <script>
-    import * as d3 from 'd3';
+  import * as d3 from "d3";
 
-    // Data for the pie chart
-    let data = [1, 2];
+  // Data for the pie chart
 
-    // Colors for each slice
-    let colors = ['gold', 'purple'];
+  export let data = [];
+  // Colors for each slice, use the schemePaired color scale
+  let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
-    // Create the arc generator for the pie chart
-    let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
+  // Create the arc generator for the pie chart
+  let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
 
-    // Total sum of the data for calculating proportions
-    let total = data.reduce((acc, val) => acc + val, 0);
+  // Calculate start and end angles for each slice
+  let sliceGenerator = d3.pie().value((d) => d.value);
 
-    // Calculate start and end angles for each slice
-    let angle = 0;
-    let arcData = data.map(d => {
-        let endAngle = angle + (d / total) * 2 * Math.PI;
-        let arc = { startAngle: angle, endAngle };
-        angle = endAngle;
-        return arc;
-    });
+  // We need to make them reactive by separating the variable declarations from the value calculations and using the $: prefix on the latter.
 
-    // Generate the arc paths
-    let arcs = arcData.map(d => arcGenerator(d));
+  $: arcData = sliceGenerator(data);
+  $: arcs = arcData.map((d) => arcGenerator(d));
+  // Generate the arc paths
+
+  export let selectedIndex = -1;
+
 </script>
 
-<svg viewBox="-50 -50 100 100">
+<div class="container">
+  <svg viewBox="-50 -50 100 100">
     {#each arcs as arc, index}
-        <path d={arc} fill={colors[index]} />
+      <path
+        d={arc}
+        fill={colors(index)}
+        class:selected={selectedIndex === index}
+        on:click={(e) => (selectedIndex = selectedIndex  === index ? -1 : index)}
+      />
     {/each}
-</svg>
+  </svg>
+  <ul class="legend">
+    {#each data as d, index}
+      <li style="--color: {colors(index)}" class:selected={selectedIndex === index}>
+        <span class="swatch"></span>
+        {d.label} <em>({d.value})</em>
+      </li>
+    {/each}
+  </ul>
+</div>
+
+<style>
+  svg {
+    max-width: 20em;
+    margin-block: 2em;
+
+    /* Do not clip shapes outside the viewBox */
+    overflow: visible;
+  }
+
+  svg:has(path:hover) {
+    path:not(:hover) {
+      opacity: 50%;
+    }
+  }
+
+  path {
+    transition: 300ms;
+    cursor: pointer;
+  }
+
+  .container {
+    display: flex;
+    gap: 1em;
+    justify-items: center;
+  }
+
+  .legend {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+    gap: 15px; /* Adjust as necessary */
+    margin: 20px; /* Outer margin */
+    padding: 10px; /* Inner padding */
+    border: 1px solid #ccc; /* Border around the legend */
+  }
+
+  .legend li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .legend .swatch {
+    width: 20px;
+    height: 20px;
+    background-color: var(--color);
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .selected {
+    --color: oklch(60% 45% 0) !important;
+    &:is(path) {
+      fill: var(--color);
+    }
+  }
+</style>
