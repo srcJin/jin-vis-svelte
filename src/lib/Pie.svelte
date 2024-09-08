@@ -41,7 +41,9 @@
         on:click={(event) => toggleWedge(index, event)}
         on:keyup={(event) => toggleWedge(index, event)}
         on:keydown={(event) => handleKeydown(event, index)}
-        style="cursor: pointer;"
+        style="cursor: pointer;
+        --start-angle: {arcData[index]?.startAngle}rad;
+	--end-angle: {arcData[index]?.endAngle}rad;"
       />
     {/each}
   </svg>
@@ -83,6 +85,16 @@
     transition: 300ms;
     cursor: pointer;
     outline: none;
+    --angle: calc(var(--end-angle) - var(--start-angle));
+    --mid-angle: calc(var(--start-angle) + var(--angle) / 2);
+
+    &.selected {
+      transform: rotate(var(--mid-angle)) translateY(-6px) scale(1.1)
+        rotate(calc(-1 * var(--mid-angle)));
+    }
+
+    transform: rotate(var(--mid-angle)) translateY(0)
+      rotate(calc(-1 * var(--mid-angle)));
   }
 
   .container {
