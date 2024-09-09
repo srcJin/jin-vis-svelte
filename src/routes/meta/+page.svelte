@@ -34,6 +34,9 @@
 
   let xAxis, yAxis, yAxisGridlines;
 
+  let hoveredIndex = -1;
+  $: hoveredCommit = commits[hoveredIndex] ?? hoveredCommit ?? {};
+
   onMount(async () => {
     data = await d3.csv("loc.csv", (row) => ({
       ...row,
@@ -119,10 +122,8 @@
         .tickFormat((d) => String(d % 24).padStart(2, "0") + ":00")
     );
     d3.select(yAxisGridlines).call(
-		d3.axisLeft(yScale)
-		  .tickFormat("")
-		  .tickSize(-usableArea.width)
-	);
+      d3.axisLeft(yScale).tickFormat("").tickSize(-usableArea.width)
+    );
   }
 </script>
 
@@ -144,23 +145,51 @@
   <dd>{maxPeriod}</dd>
 </dl>
 
+<dl
+  id="commit-tooltip"
+  class="info tooltip"
+>
+  <!-- {JSON.stringify(hoveredCommit)} -->
+  <dt>Commit</dt>
+  <dd><a href={hoveredCommit.url} target="_blank">{hoveredCommit.id}</a></dd>
+
+  <dt>Date</dt>
+  <dd>{hoveredCommit.datetime?.toLocaleString("en", { dateStyle: "full" })}</dd>
+
+  <!-- Add: Time, author, lines edited -->
+  <dt>Time</dt>
+  <dd>
+    {hoveredCommit.datetime?.toLocaleString("en", { timeStyle: "short" })}
+  </dd>
+
+  <dt>Author</dt>
+  <dd>{hoveredCommit.author}</dd>
+
+  <dt>Lines Edited</dt>
+  <dd>{hoveredCommit.totalLines}</dd>
+</dl>
+
 <svg viewBox="0 0 {width} {height}">
   <g transform="translate(0, {usableArea.bottom})" bind:this={xAxis}></g>
   <g transform="translate({usableArea.left}, 0)" bind:this={yAxis}></g>
 
   <g class="dots">
-    {#each commits as commit}
+    {#each commits as commit, index}
       <circle
         cx={xScale(commit.datetime)}
         cy={yScale(commit.hourFrac)}
         r="5"
         fill="steelblue"
+        on:mouseenter={(evt) => (hoveredIndex = index)}
+        on:mouseleave={(evt) => (hoveredIndex = -1)}
       />
     {/each}
   </g>
-  <g class="gridlines" transform="translate({usableArea.left}, 0)" bind:this={yAxisGridlines} />
-
-
+  <g
+    class="gridlines"
+    transform="translate({usableArea.left}, 0)"
+    bind:this={yAxisGridlines}
+  />
 </svg>
 
 <style>
@@ -200,6 +229,27 @@
   }
 
   .gridlines {
-	stroke-opacity: .2;
-}
+    stroke-opacity: 0.2;
+  }
+
+  .tooltip {
+    top: 1em;
+    left: 1em;
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Make sure it's above other elements */
+  }
+
+  circle {
+    transform-origin: center;
+    transform-box: fill-box;
+    transition: transform 200ms ease;
+  }
+
+  circle:hover {
+    transform: scale(2); /* Increase size on hover */
+    fill: darkblue; /* Optional: change color on hover */
+  }
 </style>
