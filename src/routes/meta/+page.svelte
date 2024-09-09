@@ -1,7 +1,7 @@
 <script>
   import * as d3 from "d3";
   import { onMount } from "svelte";
-  
+  import { computePosition, autoPlacement, offset } from "@floating-ui/dom";
   let data = [];
   let commits = [];
   let stats = {};
@@ -40,6 +40,42 @@
 
   let cursor = { x: 0, y: 0 };
 
+  let commitTooltip;
+
+  let tooltipPosition = { x: 0, y: 0 };
+
+  let tooltipVisible = false;
+
+  let rScale;
+
+  // This function is called for mouse and focus events on the dots
+  async function dotInteraction(index, evt) {
+    const hoveredDot = evt.currentTarget; // Using currentTarget to ensure we get the circle element
+
+    if (evt.type === "mouseenter" || evt.type === "focus") {
+      hoveredIndex = index; // Set the hovered index for reactive updates
+      tooltipVisible = true; // Show the tooltip
+
+      try {
+        // Compute position of the tooltip
+        const { x, y } = await computePosition(hoveredDot, commitTooltip, {
+          strategy: "fixed",
+          middleware: [
+            offset(5), // Adds a little space between the dot and the tooltip
+            autoPlacement(), // Automatically places the tooltip if space is limited
+          ],
+        });
+
+        tooltipPosition = { x, y }; // Update the tooltip position
+      } catch (error) {
+        console.error("Error computing tooltip position:", error);
+      }
+    } else if (evt.type === "mouseleave" || evt.type === "blur") {
+      hoveredIndex = -1; // Reset the hovered index
+      tooltipVisible = false; // Hide the tooltip
+    }
+  }
+
   onMount(async () => {
     data = await d3.csv("loc.csv", (row) => ({
       ...row,
@@ -50,6 +86,7 @@
       datetime: new Date(row.datetime),
     }));
 
+    
     // Calculate aggregate stats
     stats = {
       totalLOC: data.reduce((acc, d) => acc + d.line, 0),
@@ -71,6 +108,13 @@
       longestLine: d3.max(data, (d) => d.length),
       deepestLine: d3.max(data, (d) => d.depth),
     };
+
+    // Calculate extents and scale for circle radii
+    const totalLinesExtent = d3.extent(data, d => d.line);
+    rScale = d3.scaleSqrt() // step 4.2 use square root scale
+      .domain(totalLinesExtent)
+      .range([2, 30]); // Min and max radii
+
 
     // Now process the commits inside onMount or as a reactive statement
     commits = d3
@@ -100,6 +144,9 @@
 
         return ret;
       });
+
+    // Sort the commits data by totalLines in descending order so smaller dots are painted last and are less likely to be obscured by larger ones
+    commits = d3.sort(commits, d => -d.totalLines);
 
     console.log("commits=", commits);
 
@@ -158,13 +205,17 @@
         <circle
           cx={xScale(commit.datetime)}
           cy={yScale(commit.hourFrac)}
-          r="5"
+          r={rScale(commit.totalLines)}
           fill="steelblue"
-          on:mouseenter={(evt) => {
-            hoveredIndex = index;
-            cursor = { x: evt.x, y: evt.y };
-          }}
-          on:mouseleave={(evt) => (hoveredIndex = -1)}
+          fill-opacity={hoveredIndex === index ? 1 : 0.6} 
+          on:mouseenter={(evt) => dotInteraction(index, evt)}
+          on:mouseleave={(evt) => dotInteraction(index, evt)}
+          tabindex="0"
+          aria-describedby="commit-tooltip"
+          role="tooltip"
+          aria-haspopup="true"
+          on:focus={(evt) => dotInteraction(index, evt)}
+          on:blur={(evt) => dotInteraction(index, evt)}
         />
       {/each}
     </g>
@@ -180,7 +231,8 @@
   <dl
     class="info"
     hidden={hoveredIndex === -1}
-    style="top: {cursor.y}px; left: {cursor.x}px"
+    bind:this={commitTooltip}
+    style="left: {tooltipPosition.x}px; top: {tooltipPosition.y}px;"
   >
     <!-- {JSON.stringify(hoveredCommit)} -->
     <dt>Commit</dt>
