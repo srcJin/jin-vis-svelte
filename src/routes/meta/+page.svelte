@@ -1,6 +1,7 @@
 <script>
   import * as d3 from "d3";
   import { onMount } from "svelte";
+  
   let data = [];
   let commits = [];
   let stats = {};
@@ -36,6 +37,8 @@
 
   let hoveredIndex = -1;
   $: hoveredCommit = commits[hoveredIndex] ?? hoveredCommit ?? {};
+
+  let cursor = { x: 0, y: 0 };
 
   onMount(async () => {
     data = await d3.csv("loc.csv", (row) => ({
@@ -102,7 +105,7 @@
 
     xScale = d3
       .scaleTime()
-      .domain(d3.extent(commits, (d) => d.datetime))
+      .domain(d3.extent(commits, (d) => new Date(d.date))) // Use only the date part
       .range([0, width])
       .nice();
 
@@ -145,52 +148,62 @@
   <dd>{maxPeriod}</dd>
 </dl>
 
-<dl
-  id="commit-tooltip"
-  class="info tooltip"
->
-  <!-- {JSON.stringify(hoveredCommit)} -->
-  <dt>Commit</dt>
-  <dd><a href={hoveredCommit.url} target="_blank">{hoveredCommit.id}</a></dd>
+<div class="container">
+  <svg viewBox="0 0 {width} {height}">
+    <g transform="translate(0, {usableArea.bottom})" bind:this={xAxis}></g>
+    <g transform="translate({usableArea.left}, 0)" bind:this={yAxis}></g>
 
-  <dt>Date</dt>
-  <dd>{hoveredCommit.datetime?.toLocaleString("en", { dateStyle: "full" })}</dd>
+    <g class="dots">
+      {#each commits as commit, index}
+        <circle
+          cx={xScale(commit.datetime)}
+          cy={yScale(commit.hourFrac)}
+          r="5"
+          fill="steelblue"
+          on:mouseenter={(evt) => {
+            hoveredIndex = index;
+            cursor = { x: evt.x, y: evt.y };
+          }}
+          on:mouseleave={(evt) => (hoveredIndex = -1)}
+        />
+      {/each}
+    </g>
+    <g
+      class="gridlines"
+      transform="translate({usableArea.left}, 0)"
+      bind:this={yAxisGridlines}
+    />
+  </svg>
 
-  <!-- Add: Time, author, lines edited -->
-  <dt>Time</dt>
-  <dd>
-    {hoveredCommit.datetime?.toLocaleString("en", { timeStyle: "short" })}
-  </dd>
+  <!-- {JSON.stringify(cursor, null, "\t")} -->
 
-  <dt>Author</dt>
-  <dd>{hoveredCommit.author}</dd>
+  <dl
+    class="info"
+    hidden={hoveredIndex === -1}
+    style="top: {cursor.y}px; left: {cursor.x}px"
+  >
+    <!-- {JSON.stringify(hoveredCommit)} -->
+    <dt>Commit</dt>
+    <dd><a href={hoveredCommit.url} target="_blank">{hoveredCommit.id}</a></dd>
 
-  <dt>Lines Edited</dt>
-  <dd>{hoveredCommit.totalLines}</dd>
-</dl>
+    <dt>Date</dt>
+    <dd>
+      {hoveredCommit.datetime?.toLocaleString("en", { dateStyle: "full" })}
+    </dd>
 
-<svg viewBox="0 0 {width} {height}">
-  <g transform="translate(0, {usableArea.bottom})" bind:this={xAxis}></g>
-  <g transform="translate({usableArea.left}, 0)" bind:this={yAxis}></g>
+    <!-- Add: Time, author, lines edited -->
+    <dt>Time</dt>
+    <dd>
+      {hoveredCommit.datetime?.toLocaleString("en", { timeStyle: "short" })}
+    </dd>
 
-  <g class="dots">
-    {#each commits as commit, index}
-      <circle
-        cx={xScale(commit.datetime)}
-        cy={yScale(commit.hourFrac)}
-        r="5"
-        fill="steelblue"
-        on:mouseenter={(evt) => (hoveredIndex = index)}
-        on:mouseleave={(evt) => (hoveredIndex = -1)}
-      />
-    {/each}
-  </g>
-  <g
-    class="gridlines"
-    transform="translate({usableArea.left}, 0)"
-    bind:this={yAxisGridlines}
-  />
-</svg>
+    <dt>Author</dt>
+    <dd>{hoveredCommit.author}</dd>
+
+    <dt>Lines Edited</dt>
+    <dd>{hoveredCommit.totalLines}</dd>
+  </dl>
+</div>
 
 <style>
   .stats {
@@ -232,14 +245,21 @@
     stroke-opacity: 0.2;
   }
 
-  .tooltip {
-    top: 1em;
-    left: 1em;
+  dl.info {
+    position: absolute;
     background: white;
     padding: 10px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     z-index: 1000; /* Make sure it's above other elements */
+
+    transition-duration: 500ms;
+    transition-property: opacity, visibility;
+
+    &[hidden]:not(:hover, :focus-within) {
+      opacity: 0;
+      visibility: hidden;
+    }
   }
 
   circle {
