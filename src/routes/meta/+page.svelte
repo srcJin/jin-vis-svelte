@@ -8,6 +8,16 @@
   let workByPeriod = [];
   let maxPeriod = "";
 
+  // Reactively Calculate work by periods
+  $: workByPeriod = d3.rollups(
+    data,
+    (v) => v.length,
+    (d) => d.datetime.toLocaleString("en", { dayPeriod: "short" })
+  );
+
+  // Find the period with the most work
+  $: maxPeriod = d3.greatest(workByPeriod, ([, count]) => count)?.[0];
+
   let width = 1000;
   let height = 600;
   let xScale, yScale; // Define scales at the top level
@@ -23,8 +33,6 @@
   usableArea.height = usableArea.bottom - usableArea.top;
 
   let xAxis, yAxis;
-
-
 
   onMount(async () => {
     data = await d3.csv("loc.csv", (row) => ({
@@ -100,20 +108,17 @@
       .domain([0, 24]) // Assuming hourFrac is from 0 to 24
       .range([height, 0])
       .nice();
-
-      
   });
 
-  // Reactively Calculate work by periods
-  $: workByPeriod = d3.rollups(
-    data,
-    (v) => v.length,
-    (d) => d.datetime.toLocaleString("en", { dayPeriod: "short" })
-  );
-
-  // Find the period with the most work
-  $: maxPeriod = d3.greatest(workByPeriod, ([, count]) => count)?.[0];
-
+  // Reactive updates for axes
+  $: if (xAxis && yAxis) {
+    d3.select(xAxis).call(d3.axisBottom(xScale));
+    d3.select(yAxis).call(
+      d3
+        .axisLeft(yScale)
+        .tickFormat((d) => String(d % 24).padStart(2, "0") + ":00")
+    );
+  }
 </script>
 
 <h1>Meta</h1>
@@ -135,6 +140,9 @@
 </dl>
 
 <svg viewBox="0 0 {width} {height}">
+  <g transform="translate(0, {usableArea.bottom})" bind:this={xAxis}></g>
+  <g transform="translate({usableArea.left}, 0)" bind:this={yAxis}></g>
+
   <g class="dots">
     {#each commits as commit}
       <circle
@@ -145,8 +153,6 @@
       />
     {/each}
   </g>
-<g transform="translate(0, {usableArea.bottom})" bind:this={xAxis} />
-<g transform="translate({usableArea.left}, 0)" bind:this={yAxis} />
 </svg>
 
 <style>
