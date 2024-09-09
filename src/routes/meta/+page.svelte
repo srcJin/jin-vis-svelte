@@ -32,7 +32,7 @@
   usableArea.width = usableArea.right - usableArea.left;
   usableArea.height = usableArea.bottom - usableArea.top;
 
-  let xAxis, yAxis;
+  let xAxis, yAxis, yAxisGridlines;
 
   onMount(async () => {
     data = await d3.csv("loc.csv", (row) => ({
@@ -118,6 +118,11 @@
         .axisLeft(yScale)
         .tickFormat((d) => String(d % 24).padStart(2, "0") + ":00")
     );
+    d3.select(yAxisGridlines).call(
+		d3.axisLeft(yScale)
+		  .tickFormat("")
+		  .tickSize(-usableArea.width)
+	);
   }
 </script>
 
@@ -153,6 +158,9 @@
       />
     {/each}
   </g>
+  <g class="gridlines" transform="translate({usableArea.left}, 0)" bind:this={yAxisGridlines} />
+
+
 </svg>
 
 <style>
@@ -190,4 +198,8 @@
   svg {
     overflow: visible;
   }
+
+  .gridlines {
+	stroke-opacity: .2;
+}
 </style>
