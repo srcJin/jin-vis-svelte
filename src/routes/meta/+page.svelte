@@ -48,6 +48,8 @@
 
   let rScale;
 
+
+
   // This function is called for mouse and focus events on the dots
   async function dotInteraction(index, evt) {
     const hoveredDot = evt.currentTarget; // Using currentTarget to ensure we get the circle element
@@ -175,6 +177,10 @@
       d3.axisLeft(yScale).tickFormat("").tickSize(-usableArea.width)
     );
   }
+
+  // Step 5.1：Setting up the brush
+  let svg;
+  $: d3.select(svg).call(d3.brush());
 </script>
 
 <h1>Meta</h1>
@@ -196,7 +202,7 @@
 </dl>
 
 <div class="container">
-  <svg viewBox="0 0 {width} {height}">
+  <svg viewBox="0 0 {width} {height}" bind:this={svg}>
     <g transform="translate(0, {usableArea.bottom})" bind:this={xAxis}></g>
     <g transform="translate({usableArea.left}, 0)" bind:this={yAxis}></g>
 
