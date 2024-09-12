@@ -180,7 +180,10 @@
 
   // Step 5.1：Setting up the brush
   let svg;
-  $: d3.select(svg).call(d3.brush());
+  $: {
+    d3.select(svg).call(d3.brush());
+    d3.select(svg).selectAll(".dots, .overlay ~ *").raise();
+  }
 </script>
 
 <h1>Meta</h1>
@@ -330,4 +333,18 @@
     transform: scale(2); /* Increase size on hover */
     fill: darkblue; /* Optional: change color on hover */
   }
+
+  @keyframes marching-ants {
+	to {
+		stroke-dashoffset: -8; /* 5 + 3 */
+	}
+}
+
+svg :global(.selection) {
+	fill-opacity: 10%;
+	stroke: black;
+	stroke-opacity: 70%;
+	stroke-dasharray: 5 3;
+	animation: marching-ants 2s linear infinite;
+}
 </style>
