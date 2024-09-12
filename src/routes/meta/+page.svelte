@@ -88,7 +88,6 @@
       datetime: new Date(row.datetime),
     }));
 
-    
     // Calculate aggregate stats
     stats = {
       totalLOC: data.reduce((acc, d) => acc + d.line, 0),
@@ -112,11 +111,11 @@
     };
 
     // Calculate extents and scale for circle radii
-    const totalLinesExtent = d3.extent(data, d => d.line);
-    rScale = d3.scaleSqrt() // step 4.2 use square root scale
+    const totalLinesExtent = d3.extent(data, (d) => d.line);
+    rScale = d3
+      .scaleSqrt() // step 4.2 use square root scale
       .domain(totalLinesExtent)
       .range([2, 30]); // Min and max radii
-
 
     // Now process the commits inside onMount or as a reactive statement
     commits = d3
@@ -148,7 +147,7 @@
       });
 
     // Sort the commits data by totalLines in descending order so smaller dots are painted last and are less likely to be obscured by larger ones
-    commits = d3.sort(commits, d => -d.totalLines);
+    commits = d3.sort(commits, (d) => -d.totalLines);
 
     console.log("commits=", commits);
 
@@ -180,10 +179,42 @@
 
   // Step 5.1：Setting up the brush
   let svg;
+  let brushSelection = null; // A reactive variable to store brush selection
+
+
   $: {
-    d3.select(svg).call(d3.brush());
+    d3.select(svg).call(d3.brush().on("start brush end", brushed));
+
+    // Raise all circle elements above the brush selection area 
     d3.select(svg).selectAll(".dots, .overlay ~ *").raise();
   }
+
+
+  function brushed(evt) {
+    brushSelection = evt.selection; // Capture the current selection from the brush event
+    // console.log(evt);
+    console.log("brushSelection=", brushSelection);
+    // Ensure the data is bound correctly
+    d3.selectAll("circle").data(commits).classed("selected", (d) => isCommitSelected(d)); // Update class based on selection
+  }
+
+  function isCommitSelected(commit) {
+    if (!commit ||!brushSelection) {
+      return false; // Safeguard against undefined commit or brushSelection
+    }
+    let min = { x: brushSelection[0][0], y: brushSelection[0][1] };
+    let max = { x: brushSelection[1][0], y: brushSelection[1][1] };
+    console.log("commit=", commit);
+    let x = xScale(commit.date);
+    let y = yScale(commit.hourFrac);
+    let selected = x >= min.x && x <= max.x && y >= min.y && y <= max.y;
+    console.log("selected=", selected);
+    return selected;
+  }
+
+  $: selectedCommits = brushSelection ? commits.filter(isCommitSelected) : [];
+  $: hasSelection = brushSelection && selectedCommits.length > 0;
+
 </script>
 
 <h1>Meta</h1>
@@ -216,9 +247,13 @@
           cy={yScale(commit.hourFrac)}
           r={rScale(commit.totalLines)}
           fill="steelblue"
-          fill-opacity={hoveredIndex === index ? 1 : 0.6} 
+          fill-opacity={hoveredIndex === index ? 1 : 0.6}
           on:mouseenter={(evt) => dotInteraction(index, evt)}
           on:mouseleave={(evt) => dotInteraction(index, evt)}
+          class:selected={isCommitSelected(commit)}
+          data-commit={commit.id} 
+          data-index={index}     
+          data-bound="true"
           tabindex="0"
           aria-describedby="commit-tooltip"
           role="tooltip"
@@ -236,7 +271,7 @@
   </svg>
 
   <!-- {JSON.stringify(cursor, null, "\t")} -->
-
+  <p>{hasSelection ? selectedCommits.length : "No"} commits selected</p>
   <dl
     class="info"
     hidden={hoveredIndex === -1}
@@ -334,17 +369,23 @@
     fill: darkblue; /* Optional: change color on hover */
   }
 
-  @keyframes marching-ants {
-	to {
-		stroke-dashoffset: -8; /* 5 + 3 */
-	}
-}
+  circle.selected {
+    fill: orange !important; /* Change the fill color for selected commits */
+    stroke: black !important; /* Add a stroke to highlight selection */
+    stroke-width: 2px !important;
+  }
 
-svg :global(.selection) {
-	fill-opacity: 10%;
-	stroke: black;
-	stroke-opacity: 70%;
-	stroke-dasharray: 5 3;
-	animation: marching-ants 2s linear infinite;
-}
+  @keyframes marching-ants {
+    to {
+      stroke-dashoffset: -8; /* 5 + 3 */
+    }
+  }
+
+  svg :global(.selection) {
+    fill-opacity: 10%;
+    stroke: black;
+    stroke-opacity: 70%;
+    stroke-dasharray: 5 3;
+    animation: marching-ants 2s linear infinite;
+  }
 </style>
