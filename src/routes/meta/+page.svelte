@@ -2,6 +2,8 @@
   import * as d3 from "d3";
   import { onMount } from "svelte";
   import { computePosition, autoPlacement, offset } from "@floating-ui/dom";
+  import Pie from "$lib/Pie.svelte";
+
   let data = [];
   let commits = [];
   let stats = {};
@@ -301,6 +303,8 @@
     {/each}
   </ul>
 
+  <Pie data={Array.from(languageBreakdown).map(([language, lines]) => ({label: language, value: lines}))} />
+
   <dl
     class="info"
     hidden={hoveredIndex === -1}
@@ -328,6 +332,9 @@
     <dt>Lines Edited</dt>
     <dd>{hoveredCommit.totalLines}</dd>
   </dl>
+
+
+
 </div>
 
 <style>
