@@ -12,6 +12,8 @@
   let map;
   let stations = writable([]); 
 
+  let mapViewChanged = 0;
+
   onMount(async () => {
     console.log("Fetching stations...");
     const fetchedStations  = await d3.csv("bluebikes-stations.csv", (row) => ({
@@ -73,6 +75,8 @@
     });
   });
 
+  $: map?.on("move", evt => mapViewChanged++);
+
     // display stations
     function getCoords(station) {
         console.log(station);
@@ -85,7 +89,12 @@
 <div>
     <h1>Bluebikes Stations</h1>
 
-    <div>
+
+
+    <div id="map">
+
+        {#key mapViewChanged}
+        <div>
             {#each $stations as station}
             <svg>
                 <circle
@@ -96,8 +105,10 @@
                 />
             </svg>
             {/each}
+        </div>
+    {/key}
+
     </div>
-    <div id="map"></div>
 </div>
 
 <style>
