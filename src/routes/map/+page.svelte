@@ -21,9 +21,25 @@
 
   let filteredTrips, filteredArrivals, filteredDepartures, filteredStations;
 
-  $: timeFilterLabel = new Date(0, 0, 0, 0, timeFilter)
-                     .toLocaleString("en", {timeStyle: "short"});
+  let departuresByMinute = Array.from({ length: 1440 }, () => []);
+  let arrivalsByMinute = Array.from({ length: 1440 }, () => []);
 
+  $: timeFilterLabel = new Date(0, 0, 0, 0, timeFilter).toLocaleString("en", {
+    timeStyle: "short",
+  });
+
+  function filterByMinute(tripsByMinute, minute) {
+    let minMinute = (minute - 60 + 1440) % 1440;
+    let maxMinute = (minute + 60) % 1440;
+
+    if (minMinute > maxMinute) {
+      let beforeMidnight = tripsByMinute.slice(minMinute);
+      let afterMidnight = tripsByMinute.slice(0, maxMinute);
+      return beforeMidnight.concat(afterMidnight).flat();
+    } else {
+      return tripsByMinute.slice(minMinute, maxMinute).flat();
+    }
+  }
 
   onMount(async () => {
     console.log("Fetching stations...");
@@ -34,13 +50,21 @@
       Long: +row.Long,
     }));
 
-    let fetchedTrips = await d3.csv("bluebikes-traffic-2024-03.csv").then(trips => {
+    let fetchedTrips = await d3
+      .csv("bluebikes-traffic-2024-03.csv")
+      .then((trips) => {
         for (let trip of trips) {
-            trip.started_at = new Date(trip.started_at);
-            trip.ended_at = new Date(trip.ended_at);
+          trip.started_at = new Date(trip.started_at);
+          trip.ended_at = new Date(trip.ended_at);
+
+          let startedMinutes = minutesSinceMidnight(trip.started_at);
+          departuresByMinute[startedMinutes].push(trip);
+
+          let endedMinutes = minutesSinceMidnight(trip.ended_at);
+          arrivalsByMinute[endedMinutes].push(trip);
         }
         return trips;
-    });
+      });
 
     console.log("Here 1");
     // Example to populate departures and arrivals
@@ -147,38 +171,44 @@
     return date.getHours() * 60 + date.getMinutes();
   }
 
-
-  $: filteredTrips = timeFilter === -1 ? trips : trips.filter(trip => {
-    let startedMinutes = trip.started_at.getHours() * 60 + trip.started_at.getMinutes();
-    let endedMinutes = trip.ended_at.getHours() * 60 + trip.ended_at.getMinutes();
-    return Math.abs(startedMinutes - timeFilter) <= 60
-           || Math.abs(endedMinutes - timeFilter) <= 60;
-  });
+  $: filteredTrips =
+    timeFilter === -1
+      ? trips
+      : trips.filter((trip) => {
+          let startedMinutes = minutesSinceMidnight(trip.started_at);
+          departuresByMinute[startedMinutes].push(trip);
+          let endedMinutes = minutesSinceMidnight(trip.started_at);
+          arrivalsByMinute[endedMinutes].push(trip);
+          return (
+            Math.abs(startedMinutes - timeFilter) <= 60 ||
+            Math.abs(endedMinutes - timeFilter) <= 60
+          );
+        });
 
   $: filteredArrivals = d3.rollup(
-    filteredTrips,
-    v => v.length,
-    d => d.end_station_id
+    filterByMinute(arrivalsByMinute, timeFilter), // Use filtered trips by minute
+    (v) => v.length, // Grouping function for counting arrivals
+    (d) => d.end_station_id // Key by end station ID
   );
 
   $: filteredDepartures = d3.rollup(
-    filteredTrips,
-    v => v.length,
-    d => d.start_station_id
+    filterByMinute(departuresByMinute, timeFilter), // Use filtered trips by minute
+    (v) => v.length, // Grouping function for counting departures
+    (d) => d.start_station_id // Key by start station ID
   );
 
-  $: filteredStations = $stations.map(station => {
-    station = {...station}; // Cloning to avoid modifying the original data
+  $: filteredStations = $stations.map((station) => {
+    station = { ...station }; // Cloning to avoid modifying the original data
     station.arrivals = filteredArrivals.get(station.Number) ?? 0;
     station.departures = filteredDepartures.get(station.Number) ?? 0;
     station.totalTraffic = station.arrivals + station.departures;
     return station;
   });
 
-  $: radiusScale = d3.scaleSqrt()
-    .domain([0, d3.max(filteredStations, d => d.totalTraffic)])
-    .range(timeFilter === -1 ? [0, 15] : [0, 5]);  // Smaller range when no filter is applied
-
+  $: radiusScale = d3
+    .scaleSqrt()
+    .domain([0, d3.max(filteredStations, (d) => d.totalTraffic)])
+    .range(timeFilter === -1 ? [0, 15] : [0, 5]); // Smaller range when no filter is applied
 </script>
 
 <div>
