@@ -10,23 +10,24 @@
     "pk.eyJ1IjoiZ2FvLWppbiIsImEiOiJjbHVvbG04bHcwZ291Mm9wYnNtOXoxc2hpIn0.jzRU-2gQOYtcfk7JLIHdcg";
 
   let map;
-  let stations = [];
+  let stations = writable([]);
+
+    let trips = [];
 
   let mapViewChanged = 0;
 
-  let departures = [];
-  let arrivals = [];
+
 
   onMount(async () => {
     console.log("Fetching stations...");
 
-    const fetchedStations = await d3.csv("bluebikes-stations.csv", (row) => ({
+    let fetchedStations = await d3.csv("bluebikes-stations.csv", (row) => ({
       ...row,
       Lat: +row.Lat,
       Long: +row.Long,
     }));
 
-    const trips = await d3.csv("bluebikes-traffic-2024-03.csv", (row) => ({
+    let fetchedTrips = await d3.csv("bluebikes-traffic-2024-03.csv", (row) => ({
       ...row,
       // ride_id : A unique id of the ride
       // bike_type : electric or classic
@@ -45,35 +46,45 @@
       is_member: row.is_member,
     }));
 
-    departures = d3.rollup(
-      trips,
+    console.log("Here 1");
+    // Example to populate departures and arrivals
+    let departures = d3.rollup(
+      fetchedTrips,
       (v) => v.length,
       (d) => d.start_station_id
     );
 
-    // Set the data into the writable store
-    stations= fetchedStations;
+    console.log("Here 2");
+    let arrivals = d3.rollup(
+      fetchedTrips,
+      (v) => v.length,
+      (d) => d.end_station_id
+    );
 
-    // stations = stations.map((station) => {
-    //   let id = station.Number;
-    //   station.arrivals = arrivals.get(id) ?? 0;
+    console.log("Here 3");
 
-    //   // TODO departures
-    //   station.departures = departures.get(id) ?? 0;
+    let llstations = fetchedStations.map(station => {
+      let id = station.Number;
+      station.arrivals = arrivals.get(id) ?? 0;
+      station.departures = departures.get(id) ?? 0;
+      station.totalTraffic = station.arrivals + station.departures;
+      return station;
+    });
 
-    //   // TODO totalTraffic
-    //   station.totalTraffic = station.arrivals + station.departures;
+    console.log("Here 4");
 
-    //   return station;
-    // });
+        // Set the data into the writable store
+    stations.set(llstations);
+    trips = fetchedTrips;
 
     console.log("Trips fetched:", trips);
 
     console.log("Fetching stations...");
-    console.log("Stations fetched:", stations);
+    console.log("Stations fetched:", llstations);
 
     // console.log("Stations fetched:", fetchedStations);
     console.log("Initializing map...");
+
     map = new mapboxgl.Map({
       container: "map", // the id of the container element
       style: "mapbox://styles/gao-jin/cm0zebjvq00jf01p431j3bavz", // stylesheet location
@@ -139,7 +150,7 @@
   <div id="map">
     {#key mapViewChanged}
       <div>
-        {#each stations as station}
+        {#each $stations as station}
           <svg>
             <circle
               cx={getCoords(station).cx}
