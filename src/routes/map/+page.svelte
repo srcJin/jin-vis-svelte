@@ -15,7 +15,8 @@
     let trips = [];
 
   let mapViewChanged = 0;
-
+  let radiusScale = d3.scaleSqrt()
+    .range([0, 25]);
 
 
   onMount(async () => {
@@ -71,10 +72,15 @@
       return station;
     });
 
+
+    // Set the scale domain after the data is loaded
+    radiusScale.domain([0, d3.max(llstations, d => d.totalTraffic)]);
+
     console.log("Here 4");
 
         // Set the data into the writable store
     stations.set(llstations);
+
     trips = fetchedTrips;
 
     console.log("Trips fetched:", trips);
@@ -142,6 +148,8 @@
     let { x, y } = map.project(point);
     return { cx: x, cy: y };
   }
+
+  
 </script>
 
 <div>
@@ -155,9 +163,14 @@
             <circle
               cx={getCoords(station).cx}
               cy={getCoords(station).cy}
-              r="2"
-              fill="blue"
-            />
+             r={radiusScale(station.totalTraffic)}
+              fill="steelblue"
+              fill-opacity="0.6"
+            stroke="white"
+            pointer-events= auto
+            >
+            <title>{station.totalTraffic} trips ({station.departures} departures, { station.arrivals} arrivals)</title>
+          </circle>
           </svg>
         {/each}
       </div>
@@ -190,5 +203,16 @@
     width: 100%;
     height: 100%;
     pointer-events: none;
+  }
+
+
+  circle {
+    
+    transition: all 0.3s ease;
+  }
+
+  circle:hover {
+    fill-opacity: 1;
+    stroke-width: 2px;
   }
 </style>
