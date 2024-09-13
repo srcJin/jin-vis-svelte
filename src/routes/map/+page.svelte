@@ -19,8 +19,11 @@
 
   let timeFilter = -1; // Time in minutes, -1 means no filtering
 
+  let filteredTrips, filteredArrivals, filteredDepartures, filteredStations;
+
   $: timeFilterLabel = new Date(0, 0, 0, 0, timeFilter)
                      .toLocaleString("en", {timeStyle: "short"});
+
 
   onMount(async () => {
     console.log("Fetching stations...");
@@ -31,24 +34,13 @@
       Long: +row.Long,
     }));
 
-    let fetchedTrips = await d3.csv("bluebikes-traffic-2024-03.csv", (row) => ({
-      ...row,
-      // ride_id : A unique id of the ride
-      // bike_type : electric or classic
-      // started_at : the date and time the trip started in ISO 8601 format (e.g. "2019-12-13 13:28:04.2860" )
-      // ended_at : the date and time the trip ended in ISO 8601 format (e.g. "2019-12-13 13:33:57.4370" )
-      // start_station_id : the ID of the station where the trip started (e.g. A32000 )
-      // end_station_id : the ID of the station where the trip ended (e.g. A32000 )
-      // is_member : whether the rider is a member or not ( 1 or 0 )
-
-      ride_id: row.ride_id,
-      bike_type: row.bike_type,
-      started_at: row.started_at,
-      ended_at: row.ended_at,
-      start_station_id: row.start_station_id,
-      end_station_id: row.end_station_id,
-      is_member: row.is_member,
-    }));
+    let fetchedTrips = await d3.csv("bluebikes-traffic-2024-03.csv").then(trips => {
+        for (let trip of trips) {
+            trip.started_at = new Date(trip.started_at);
+            trip.ended_at = new Date(trip.ended_at);
+        }
+        return trips;
+    });
 
     console.log("Here 1");
     // Example to populate departures and arrivals
@@ -75,8 +67,8 @@
       return station;
     });
 
-    // Set the scale domain after the data is loaded
-    radiusScale.domain([0, d3.max(llstations, (d) => d.totalTraffic)]);
+    // // Set the scale domain after the data is loaded
+    // radiusScale.domain([0, d3.max(llstations, (d) => d.totalTraffic)]);
 
     console.log("Here 4");
 
@@ -150,6 +142,43 @@
     let { x, y } = map.project(point);
     return { cx: x, cy: y };
   }
+
+  function minutesSinceMidnight(date) {
+    return date.getHours() * 60 + date.getMinutes();
+  }
+
+
+  $: filteredTrips = timeFilter === -1 ? trips : trips.filter(trip => {
+    let startedMinutes = trip.started_at.getHours() * 60 + trip.started_at.getMinutes();
+    let endedMinutes = trip.ended_at.getHours() * 60 + trip.ended_at.getMinutes();
+    return Math.abs(startedMinutes - timeFilter) <= 60
+           || Math.abs(endedMinutes - timeFilter) <= 60;
+  });
+
+  $: filteredArrivals = d3.rollup(
+    filteredTrips,
+    v => v.length,
+    d => d.end_station_id
+  );
+
+  $: filteredDepartures = d3.rollup(
+    filteredTrips,
+    v => v.length,
+    d => d.start_station_id
+  );
+
+  $: filteredStations = $stations.map(station => {
+    station = {...station}; // Cloning to avoid modifying the original data
+    station.arrivals = filteredArrivals.get(station.Number) ?? 0;
+    station.departures = filteredDepartures.get(station.Number) ?? 0;
+    station.totalTraffic = station.arrivals + station.departures;
+    return station;
+  });
+
+  $: radiusScale = d3.scaleSqrt()
+    .domain([0, d3.max(filteredStations, d => d.totalTraffic)])
+    .range(timeFilter === -1 ? [0, 15] : [0, 5]);  // Smaller range when no filter is applied
+
 </script>
 
 <div>
