@@ -4,28 +4,75 @@
   import { onMount } from "svelte";
   import * as d3 from "d3";
   import { get } from "svelte/store";
-  import { writable } from 'svelte/store';
+  import { writable } from "svelte/store";
 
   mapboxgl.accessToken =
     "pk.eyJ1IjoiZ2FvLWppbiIsImEiOiJjbHVvbG04bHcwZ291Mm9wYnNtOXoxc2hpIn0.jzRU-2gQOYtcfk7JLIHdcg";
 
   let map;
-  let stations = writable([]); 
+  let stations = [];
 
   let mapViewChanged = 0;
 
+  let departures = [];
+  let arrivals = [];
+
   onMount(async () => {
     console.log("Fetching stations...");
-    const fetchedStations  = await d3.csv("bluebikes-stations.csv", (row) => ({
+
+    const fetchedStations = await d3.csv("bluebikes-stations.csv", (row) => ({
       ...row,
       Lat: +row.Lat,
       Long: +row.Long,
     }));
 
-    // Set the data into the writable store
-    stations.set(fetchedStations);
+    const trips = await d3.csv("bluebikes-traffic-2024-03.csv", (row) => ({
+      ...row,
+      // ride_id : A unique id of the ride
+      // bike_type : electric or classic
+      // started_at : the date and time the trip started in ISO 8601 format (e.g. "2019-12-13 13:28:04.2860" )
+      // ended_at : the date and time the trip ended in ISO 8601 format (e.g. "2019-12-13 13:33:57.4370" )
+      // start_station_id : the ID of the station where the trip started (e.g. A32000 )
+      // end_station_id : the ID of the station where the trip ended (e.g. A32000 )
+      // is_member : whether the rider is a member or not ( 1 or 0 )
 
-    console.log("Stations fetched:", fetchedStations);
+      ride_id: row.ride_id,
+      bike_type: row.bike_type,
+      started_at: row.started_at,
+      ended_at: row.ended_at,
+      start_station_id: row.start_station_id,
+      end_station_id: row.end_station_id,
+      is_member: row.is_member,
+    }));
+
+    departures = d3.rollup(
+      trips,
+      (v) => v.length,
+      (d) => d.start_station_id
+    );
+
+    // Set the data into the writable store
+    stations= fetchedStations;
+
+    // stations = stations.map((station) => {
+    //   let id = station.Number;
+    //   station.arrivals = arrivals.get(id) ?? 0;
+
+    //   // TODO departures
+    //   station.departures = departures.get(id) ?? 0;
+
+    //   // TODO totalTraffic
+    //   station.totalTraffic = station.arrivals + station.departures;
+
+    //   return station;
+    // });
+
+    console.log("Trips fetched:", trips);
+
+    console.log("Fetching stations...");
+    console.log("Stations fetched:", stations);
+
+    // console.log("Stations fetched:", fetchedStations);
     console.log("Initializing map...");
     map = new mapboxgl.Map({
       container: "map", // the id of the container element
@@ -75,40 +122,36 @@
     });
   });
 
-  $: map?.on("move", evt => mapViewChanged++);
+  $: map?.on("move", (evt) => mapViewChanged++);
 
-    // display stations
-    function getCoords(station) {
-        console.log(station);
-        let point = new mapboxgl.LngLat(+station.Long, +station.Lat);
-        let { x, y } = map.project(point);
-      return { cx: x, cy: y };
-    }
+  // display stations
+  function getCoords(station) {
+    // console.log(station);
+    let point = new mapboxgl.LngLat(+station.Long, +station.Lat);
+    let { x, y } = map.project(point);
+    return { cx: x, cy: y };
+  }
 </script>
 
 <div>
-    <h1>Bluebikes Stations</h1>
+  <h1>Bluebikes Stations</h1>
 
-
-
-    <div id="map">
-
-        {#key mapViewChanged}
-        <div>
-            {#each $stations as station}
-            <svg>
-                <circle
-                    cx={getCoords(station).cx}
-                    cy={getCoords(station).cy}
-                    r="5"
-                    fill="blue"
-                />
-            </svg>
-            {/each}
-        </div>
+  <div id="map">
+    {#key mapViewChanged}
+      <div>
+        {#each stations as station}
+          <svg>
+            <circle
+              cx={getCoords(station).cx}
+              cy={getCoords(station).cy}
+              r="2"
+              fill="blue"
+            />
+          </svg>
+        {/each}
+      </div>
     {/key}
-
-    </div>
+  </div>
 </div>
 
 <style>
