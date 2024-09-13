@@ -19,12 +19,8 @@
 
   let timeFilter = -1; // Time in minutes, -1 means no filtering
 
-  function formatTime(minutes) {
-    if (minutes === -1) return null; // No filtering
-    let hours = Math.floor(minutes / 60);
-    let mins = minutes % 60;
-    return `${hours.toString().padStart(2, "0")}:${mins.toString().padStart(2, "0")}`;
-  }
+  $: timeFilterLabel = new Date(0, 0, 0, 0, timeFilter)
+                     .toLocaleString("en", {timeStyle: "short"});
 
   onMount(async () => {
     console.log("Fetching stations...");
@@ -161,16 +157,16 @@
   <label>
     Filter by time:
     <input
+      bind:value={timeFilter}
       type="range"
       min="-1"
       max="1440"
-      value={timeFilter}
       on:input={(e) => (timeFilter = parseInt(e.target.value))}
     />
     {#if timeFilter === -1}
       <em style="display: block;">(any time)</em>
     {:else}
-      <time style="display: block;">{formatTime(timeFilter)}</time>
+      <time style="display: block;">{timeFilterLabel}</time>
     {/if}
   </label>
   <div id="map">
