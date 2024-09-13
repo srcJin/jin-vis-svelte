@@ -12,12 +12,19 @@
   let map;
   let stations = writable([]);
 
-    let trips = [];
+  let trips = [];
 
   let mapViewChanged = 0;
-  let radiusScale = d3.scaleSqrt()
-    .range([0, 25]);
+  let radiusScale = d3.scaleSqrt().range([0, 25]);
 
+  let timeFilter = -1; // Time in minutes, -1 means no filtering
+
+  function formatTime(minutes) {
+    if (minutes === -1) return null; // No filtering
+    let hours = Math.floor(minutes / 60);
+    let mins = minutes % 60;
+    return `${hours.toString().padStart(2, "0")}:${mins.toString().padStart(2, "0")}`;
+  }
 
   onMount(async () => {
     console.log("Fetching stations...");
@@ -64,7 +71,7 @@
 
     console.log("Here 3");
 
-    let llstations = fetchedStations.map(station => {
+    let llstations = fetchedStations.map((station) => {
       let id = station.Number;
       station.arrivals = arrivals.get(id) ?? 0;
       station.departures = departures.get(id) ?? 0;
@@ -72,13 +79,12 @@
       return station;
     });
 
-
     // Set the scale domain after the data is loaded
-    radiusScale.domain([0, d3.max(llstations, d => d.totalTraffic)]);
+    radiusScale.domain([0, d3.max(llstations, (d) => d.totalTraffic)]);
 
     console.log("Here 4");
 
-        // Set the data into the writable store
+    // Set the data into the writable store
     stations.set(llstations);
 
     trips = fetchedTrips;
@@ -148,13 +154,25 @@
     let { x, y } = map.project(point);
     return { cx: x, cy: y };
   }
-
-  
 </script>
 
 <div>
   <h1>Bluebikes Stations</h1>
-
+  <label>
+    Filter by time:
+    <input
+      type="range"
+      min="-1"
+      max="1440"
+      value={timeFilter}
+      on:input={(e) => (timeFilter = parseInt(e.target.value))}
+    />
+    {#if timeFilter === -1}
+      <em style="display: block;">(any time)</em>
+    {:else}
+      <time style="display: block;">{formatTime(timeFilter)}</time>
+    {/if}
+  </label>
   <div id="map">
     {#key mapViewChanged}
       <div>
@@ -163,14 +181,17 @@
             <circle
               cx={getCoords(station).cx}
               cy={getCoords(station).cy}
-             r={radiusScale(station.totalTraffic)}
+              r={radiusScale(station.totalTraffic)}
               fill="steelblue"
               fill-opacity="0.6"
-            stroke="white"
-            pointer-events= auto
+              stroke="white"
+              pointer-events="auto"
             >
-            <title>{station.totalTraffic} trips ({station.departures} departures, { station.arrivals} arrivals)</title>
-          </circle>
+              <title
+                >{station.totalTraffic} trips ({station.departures} departures, {station.arrivals}
+                arrivals)</title
+              >
+            </circle>
           </svg>
         {/each}
       </div>
@@ -205,14 +226,21 @@
     pointer-events: none;
   }
 
-
   circle {
-    
     transition: all 0.3s ease;
   }
 
   circle:hover {
     fill-opacity: 1;
     stroke-width: 2px;
+  }
+
+  em {
+    color: grey;
+    font-style: italic;
+  }
+
+  input[type="range"] {
+    width: 300px; /* Adjust the width as needed */
   }
 </style>
