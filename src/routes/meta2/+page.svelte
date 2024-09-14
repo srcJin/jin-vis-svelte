@@ -5,6 +5,7 @@
   import Pie from "$lib/Pie.svelte";
 
   import CommitScatterplot from "./Scatterplot.svelte";
+  import FileLines from "./FileLines.svelte";
 
   let data = [];
   let commits = [];
@@ -18,6 +19,8 @@
   let selectedLines = [];
   let totalCodeLines = 0;
   let selectedCommits = [];
+
+  let filteredLines
 
   // Reactively Calculate work by periods
   $: workByPeriod = d3.rollups(
@@ -148,6 +151,22 @@
 </script>
 
 <h1>Meta</h1>
+
+<label for="commit-slider">
+  Filter by date and time:
+  <input
+    type="range"
+    id="commit-slider"
+    min="0"
+    max="100"
+    bind:value={commitProgress}
+    style="flex: 1;"
+  />
+  <time>{commitMaxTime ? commitMaxTime.toLocaleString() : "Loading..."}</time>
+</label>
+
+<FileLines lines={filteredLines} />
+
 <dl class="stats">
   <dt>Commits</dt>
   <dd>{commits.length}</dd>
@@ -183,18 +202,9 @@
     }))}
   />
 
-  <label for="commit-slider">
-    Filter by date and time:
-    <input
-      type="range"
-      id="commit-slider"
-      min="0"
-      max="100"
-      bind:value={commitProgress}
-      style="flex: 1;"
-    />
-    <time>{commitMaxTime ? commitMaxTime.toLocaleString() : "Loading..."}</time>
-  </label>
+
+
+
 
   <!-- Display filtered commits -->
   <ul>
@@ -209,6 +219,7 @@
       <li>No commits available for the selected date range.</li>
     {/if}
   </ul>
+
 </div>
 
 <style>
