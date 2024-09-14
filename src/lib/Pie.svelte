@@ -3,9 +3,6 @@
 
   // Data for the pie chart
 
-  export let data = [];
-  // Colors for each slice, use the schemePaired color scale
-  let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
   // Create the arc generator for the pie chart
   let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
@@ -13,10 +10,25 @@
   // Calculate start and end angles for each slice
   let sliceGenerator = d3.pie().value((d) => d.value);
 
+  
+  // Colors for each slice, use the schemePaired color scale
+  let colors = d3.scaleOrdinal(d3.schemeTableau10);
+
+
+  export let data = [];
+  let pieData;
+
+  $: {
+  pieData = data.map(d => ({...d}));
+  let arcData = sliceGenerator(pieData);
+  let arcs = arcData.map((d) => arcGenerator(d));
+  pieData = pieData.map((d, i) => ({...d, ...arcData[i], arc: arcs[i]}));
+  };
+
+
   // We need to make them reactive by separating the variable declarations from the value calculations and using the $: prefix on the latter.
 
-  $: arcData = sliceGenerator(data);
-  $: arcs = arcData.map((d) => arcGenerator(d));
+
   // Generate the arc paths
 
   export let selectedIndex = -1;
@@ -30,25 +42,25 @@
 
 <div class="container">
   <svg viewBox="-50 -50 100 100">
-    {#each data as d, index}
+    {#each pieData as d, index}
       <path
-        d={arcs[index]}
+        d={d.arc}
         fill={colors(d.label)}
         class:selected={selectedIndex === index}
         tabindex="0"
         role="button"
-        aria-label={`Select ${data[index].label} slice`}
+        aria-label={`Select ${d.arc.label} slice`}
         on:click={(event) => toggleWedge(index, event)}
         on:keyup={(event) => toggleWedge(index, event)}
         on:keydown={(event) => handleKeydown(event, index)}
         style="cursor: pointer;
-        --start-angle: {arcData[index]?.startAngle}rad;
-	--end-angle: {arcData[index]?.endAngle}rad;"
+        --start-angle: {d.arc?.startAngle}rad;
+	--end-angle: {d.arc?.endAngle}rad;"
       />
     {/each}
   </svg>
   <ul class="legend">
-    {#each data as d, index}
+    {#each pieData as d, index}
       <li
         style="--color: {colors(d.label)}"
         class:selected={selectedIndex === index}
