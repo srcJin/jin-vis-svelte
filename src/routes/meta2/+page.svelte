@@ -37,11 +37,14 @@
   $: console.log("Updated commits in Scatterplot:", commits);
 
   let commitProgress = 100;
+  let raceProgress = 100;
+
   let timeScale;
   let commitMaxTime;
   const d3Formatter = d3.format(".1~%");
 
-  let raceProgress = 100;
+  let raceMaxTime;
+
 
   let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
@@ -123,10 +126,7 @@
     console.log("timeScale range:", timeScale.range());
   });
 
-  $: hasSelection = selectedCommits.length > 0;
-  $: selectedLines = (hasSelection ? selectedCommits : commits).flatMap(
-    (d) => d.lines
-  );
+
   // Calculate total lines in the selectedLines dataset
   $: totalCodeLines = d3.sum(selectedLines, (d) => d.length); // Sum of all lines in selectedLines
 
@@ -141,6 +141,11 @@
 
   $: filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
 
+  $: filteredLines = data.filter((d) => d.datetime <= commitMaxTime);
+
+  $: raceCommits = commits.filter(commit => commit.datetime <= raceMaxTime);
+  $: raceLines = data.filter(data => data.datetime <= raceMaxTime)
+
   $: if (timeScale) {
     console.log("commitProgress=", commitProgress);
     console.log("commits=", commits);
@@ -149,11 +154,10 @@
     filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
   }
 
-  $: filteredLines = data.filter((d) => d.datetime <= commitMaxTime);
 
-  $: if (data.length > 0) {
-  commits = processCommits(data); // Ensure this is a reactive function
-}
+  $: hasSelection = selectedCommits.length > 0;
+  $: selectedLines = (hasSelection ? selectedCommits : filteredCommits).flatMap(d => d.lines);
+
 </script>
 
 <svelte:head>
@@ -190,6 +194,7 @@
 </Scrolly>
 
 
+
 <label for="commit-slider">
   Filter by date and time:
   <input
@@ -221,6 +226,8 @@
   <dt>Most Active Period</dt>
   <dd>{maxPeriod}</dd>
 </dl>
+
+
 
 <ul class="language-breakdown">
   {#each languageBreakdown as [language, lines]}
