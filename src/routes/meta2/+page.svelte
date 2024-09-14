@@ -50,35 +50,43 @@
 
   let rScale;
 
+  let commitProgress = 100;
+  let timeScale;
+  let commitMaxTime;
+  let filteredCommits = [];
+
   async function dotInteraction(index, evt) {
-  const hoveredDot = evt.currentTarget; // Using currentTarget to ensure we get the circle element
+    const hoveredDot = evt.currentTarget; // Using currentTarget to ensure we get the circle element
 
-  if (evt.type === "mouseenter" || evt.type === "focus") {
-    hoveredIndex = index; // Set the hovered index for reactive updates
-    tooltipVisible = true; // Show the tooltip
+    if (evt.type === "mouseenter" || evt.type === "focus") {
+      hoveredIndex = index; // Set the hovered index for reactive updates
+      tooltipVisible = true; // Show the tooltip
 
-    try {
-      // Compute position of the tooltip
-      const { x, y } = await computePosition(hoveredDot, commitTooltip, {
-        strategy: "fixed",
-        middleware: [
-          offset(5), // Adds a little space between the dot and the tooltip
-          autoPlacement(), // Automatically places the tooltip if space is limited
-        ],
-      });
+      try {
+        // Compute position of the tooltip
+        const { x, y } = await computePosition(hoveredDot, commitTooltip, {
+          strategy: "fixed",
+          middleware: [
+            offset(5), // Adds a little space between the dot and the tooltip
+            autoPlacement(), // Automatically places the tooltip if space is limited
+          ],
+        });
 
-      tooltipPosition = { x, y }; // Update the tooltip position
-    } catch (error) {
-      console.error("Error computing tooltip position:", error);
+        tooltipPosition = { x, y }; // Update the tooltip position
+      } catch (error) {
+        console.error("Error computing tooltip position:", error);
+      }
+    } else if (evt.type === "mouseleave" || evt.type === "blur") {
+      hoveredIndex = -1; // Reset the hovered index
+      tooltipVisible = false; // Hide the tooltip
+    } else if (
+      evt.type === "click" ||
+      (evt.type === "keyup" && evt.key === "Enter")
+    ) {
+      // If the user clicks or presses "Enter" on the dot, update selectedCommits
+      selectedCommits = [commits[index]]; // Overwrite selectedCommits with the commit at the given index
     }
-  } else if (evt.type === "mouseleave" || evt.type === "blur") {
-    hoveredIndex = -1; // Reset the hovered index
-    tooltipVisible = false; // Hide the tooltip
-  } else if (evt.type === "click" || (evt.type === "keyup" && evt.key === "Enter")) {
-    // If the user clicks or presses "Enter" on the dot, update selectedCommits
-    selectedCommits = [commits[index]]; // Overwrite selectedCommits with the commit at the given index
   }
-}
 
   onMount(async () => {
     data = await d3.csv("loc.csv", (row) => ({
@@ -164,6 +172,17 @@
       .domain([0, 24]) // Assuming hourFrac is from 0 to 24
       .range([height, 0])
       .nice();
+
+    console.log("commits before creating timeScale:", commits);
+    const commitExtent = d3.extent(commits, (d) => d.datetime);
+    console.log("commitExtent (min, max):", commitExtent);
+    timeScale = d3
+      .scaleTime()
+      .domain(d3.extent(commits, (d) => d.datetime))
+      .range([0, 100]);
+
+    console.log("timeScale domain:", timeScale.domain());
+    console.log("timeScale range:", timeScale.range());
   });
 
   // Reactive updates for axes
@@ -189,22 +208,23 @@
     d3.select(svg).selectAll(".dots, .overlay ~ *").raise();
   }
 
-  function brushed (evt) {
-	let brushSelection = evt.selection;
-	selectedCommits = !brushSelection ? [] : commits.filter(commit => {
-		let min = {x: brushSelection[0][0], y: brushSelection[0][1]};
-		let max = {x: brushSelection[1][0], y: brushSelection[1][1]};
-		let x = xScale(commit.date);
-		let y = yScale(commit.hourFrac);
+  function brushed(evt) {
+    let brushSelection = evt.selection;
+    selectedCommits = !brushSelection
+      ? []
+      : commits.filter((commit) => {
+          let min = { x: brushSelection[0][0], y: brushSelection[0][1] };
+          let max = { x: brushSelection[1][0], y: brushSelection[1][1] };
+          let x = xScale(commit.date);
+          let y = yScale(commit.hourFrac);
 
-		return x >= min.x && x <= max.x && y >= min.y && y <= max.y;
-	});
-}
+          return x >= min.x && x <= max.x && y >= min.y && y <= max.y;
+        });
+  }
 
-function isCommitSelected (commit) {
-	return selectedCommits.includes(commit);
-}
-
+  function isCommitSelected(commit) {
+    return selectedCommits.includes(commit);
+  }
 
   // $: selectedCommits = brushSelection ? commits.filter(isCommitSelected) : [];
   // selectedCommits no longer needs to be reactive, it can become a plain variable:
@@ -228,6 +248,16 @@ function isCommitSelected (commit) {
   console.log("languageBreakdown=", languageBreakdown);
 
   const d3Formatter = d3.format(".1~%");
+
+  $: filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
+
+  $: if (timeScale) {
+    console.log("commitProgress=", commitProgress);
+    console.log("commits=", commits);
+    commitMaxTime = timeScale.invert(commitProgress);
+    console.log("commitMaxTime=", commitMaxTime);
+    filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
+  }
 </script>
 
 <h1>Meta</h1>
@@ -275,7 +305,6 @@ function isCommitSelected (commit) {
           on:blur={(evt) => dotInteraction(index, evt)}
           on:click={(evt) => dotInteraction(index, evt)}
           on:keyup={(evt) => dotInteraction(index, evt)}
-
         />
       {/each}
     </g>
@@ -297,12 +326,17 @@ function isCommitSelected (commit) {
     {#each languageBreakdown as [language, lines]}
       <li>
         <strong>{language.toUpperCase()}</strong>
-        <div>{lines} lines ({d3Formatter((lines / totalCodeLines)) })</div>
+        <div>{lines} lines ({d3Formatter(lines / totalCodeLines)})</div>
       </li>
     {/each}
   </ul>
 
-  <Pie data={Array.from(languageBreakdown).map(([language, lines]) => ({label: language, value: lines}))} />
+  <Pie
+    data={Array.from(languageBreakdown).map(([language, lines]) => ({
+      label: language,
+      value: lines,
+    }))}
+  />
 
   <dl
     class="info"
@@ -332,8 +366,32 @@ function isCommitSelected (commit) {
     <dd>{hoveredCommit.totalLines}</dd>
   </dl>
 
+  <label for="commit-slider">
+    Filter by date and time:
+    <input
+      type="range"
+      id="commit-slider"
+      min="0"
+      max="100"
+      bind:value={commitProgress}
+      style="flex: 1;"
+    />
+    <time>{commitMaxTime ? commitMaxTime.toLocaleString() : "Loading..."}</time>
+  </label>
 
-
+  <!-- Display filtered commits -->
+  <ul>
+    {#if filteredCommits.length > 0}
+      {#each filteredCommits as commit}
+        <li>
+          Commit {commit.id} on {commit.datetime.toLocaleString()} with {commit.totalLines}
+          lines edited
+        </li>
+      {/each}
+    {:else}
+      <li>No commits available for the selected date range.</li>
+    {/if}
+  </ul>
 </div>
 
 <style>
@@ -439,13 +497,13 @@ function isCommitSelected (commit) {
 
   .language-breakdown strong {
     display: block;
-    font-size: 1.0rem;
+    font-size: 1rem;
     color: #808080; /* Grey color */
     letter-spacing: 0.05em;
   }
 
   .language-breakdown div {
-    font-size: 1.0rem;
+    font-size: 1rem;
     color: #333;
   }
 </style>
