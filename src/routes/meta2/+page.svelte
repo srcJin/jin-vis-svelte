@@ -38,7 +38,7 @@
   let xAxis, yAxis, yAxisGridlines;
 
   let hoveredIndex = -1;
-  $: hoveredCommit = commits[hoveredIndex] ?? hoveredCommit ?? {};
+  $: hoveredCommit = filteredCommits[hoveredIndex] ?? hoveredCommit ?? {};
 
   let cursor = { x: 0, y: 0 };
 
@@ -54,6 +54,8 @@
   let timeScale;
   let commitMaxTime;
   let filteredCommits = [];
+
+  let filteredLines = [];
 
   async function dotInteraction(index, evt) {
     const hoveredDot = evt.currentTarget; // Using currentTarget to ensure we get the circle element
@@ -212,7 +214,7 @@
     let brushSelection = evt.selection;
     selectedCommits = !brushSelection
       ? []
-      : commits.filter((commit) => {
+      : filteredCommits.filter((commit) => {
           let min = { x: brushSelection[0][0], y: brushSelection[0][1] };
           let max = { x: brushSelection[1][0], y: brushSelection[1][1] };
           let x = xScale(commit.date);
@@ -258,6 +260,8 @@
     console.log("commitMaxTime=", commitMaxTime);
     filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
   }
+
+  $: filteredLines = data.filter((d) => d.datetime <= commitMaxTime);
 </script>
 
 <h1>Meta</h1>
@@ -284,7 +288,7 @@
     <g transform="translate({usableArea.left}, 0)" bind:this={yAxis}></g>
 
     <g class="dots">
-      {#each commits as commit, index}
+      {#each filteredCommits as commit, index (commit.id)}
         <circle
           cx={xScale(commit.datetime)}
           cy={yScale(commit.hourFrac)}
@@ -455,6 +459,10 @@
     transform-origin: center;
     transform-box: fill-box;
     transition: transform 200ms ease;
+
+    @starting-style {
+      r: 0;
+    }
   }
 
   circle:hover {
