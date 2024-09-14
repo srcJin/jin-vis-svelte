@@ -41,6 +41,9 @@
     }
   }
 
+  let stationFlow = d3.scaleQuantize().domain([0, 1]).range([0, 0.5, 1]);
+  console.log("stationFlow", stationFlow(0.8));
+
   onMount(async () => {
     console.log("Fetching stations...");
 
@@ -88,6 +91,8 @@
       station.arrivals = arrivals.get(id) ?? 0;
       station.departures = departures.get(id) ?? 0;
       station.totalTraffic = station.arrivals + station.departures;
+      // console.log("llstations calc", station.departures, station.totalTraffic)
+      // console.log("llstations calc2", station.departures/station.totalTraffic)
       return station;
     });
 
@@ -171,6 +176,33 @@
     return date.getHours() * 60 + date.getMinutes();
   }
 
+  // function getMixedColor(departures, totalTraffic) {
+  //   const ratio = Math.min(1, Math.max(0, departures / totalTraffic)); // Calculate the ratio
+  //   console.log("ratio", ratio);
+  //   const colorScale = d3.interpolate("black", "white"); // Use D3 to interpolate between departure and arrival colors
+  //   console.log("colorScale", colorScale(ratio));
+  //   return colorScale(ratio); // Mix colors based on the ratio
+  // }
+
+  function getMixedColor(departures, totalTraffic) {
+  if (totalTraffic === 0) {
+    return "grey"; 
+  } else {
+    const ratio = Math.min(1, Math.max(0, departures / totalTraffic)); 
+
+    if (ratio < 0.45) {
+      return d3.interpolate("lightblue", "blue")(ratio / 0.45); 
+    }
+    
+    else if (ratio >= 0.45 && ratio < 0.55) {
+      return d3.interpolate("rgb(225, 178, 225)", "purple")((ratio - 0.45) / 0.1); 
+    } 
+
+    else if (ratio >= 0.55) {
+      return d3.interpolate("rgb(227, 191, 126)", "orange")((ratio - 0.55) / 0.45); 
+    }
+  }
+}
   $: filteredTrips =
     timeFilter === -1
       ? trips
@@ -202,6 +234,10 @@
     station.arrivals = filteredArrivals.get(station.Number) ?? 0;
     station.departures = filteredDepartures.get(station.Number) ?? 0;
     station.totalTraffic = station.arrivals + station.departures;
+
+    // console.log("calc", station.departures, station.totalTraffic)
+    // console.log("calc2", station.departures/station.totalTraffic)
+
     return station;
   });
 
@@ -212,7 +248,7 @@
 </script>
 
 <div>
-  <h1>Bluebikes Stations</h1>
+  <h1>🚴🏼‍♀️ Bikewatching</h1>
   <label>
     Filter by time:
     <input
@@ -234,10 +270,10 @@
         {#each $stations as station}
           <svg>
             <circle
+              fill={getMixedColor(station.departures, station.totalTraffic)}
               cx={getCoords(station).cx}
               cy={getCoords(station).cy}
               r={radiusScale(station.totalTraffic)}
-              fill="steelblue"
               fill-opacity="0.6"
               stroke="white"
               pointer-events="auto"
@@ -251,6 +287,30 @@
         {/each}
       </div>
     {/key}
+  </div>
+
+  
+  <div class="legend">
+    <div class="legend-block">
+      <div class="legend-color none"></div>
+      <span class="legend-label">None</span>
+
+    </div>
+    <div class="legend-block">
+      <div class="legend-color departures"></div>
+      <span class="legend-label">More departures</span>
+
+    </div>
+    <div class="legend-block">
+      <div class="legend-color balanced"></div>
+      <span class="legend-label">Balanced</span>
+
+    </div>
+    <div class="legend-block">
+      <div class="legend-color arrivals"></div>
+      <span class="legend-label">More arrivals</span>
+
+    </div>
   </div>
 </div>
 
@@ -298,4 +358,47 @@
   input[type="range"] {
     width: 300px; /* Adjust the width as needed */
   }
+
+  .legend {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1em;
+  padding: 1em;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.legend-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.legend-label {
+  margin-bottom: 0.2em;
+}
+
+.legend-color {
+  width: 100px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+/* Define each color block's gradient */
+.none {
+  background-color: grey; /* Static grey color */
+}
+
+.departures {
+  background: linear-gradient(to right, lightblue, blue); 
+}
+
+.balanced {
+  background: linear-gradient(to right, rgb(225, 178, 225), purple); 
+}
+
+.arrivals {
+  background: linear-gradient(to right, rgb(227, 191, 126), orange); 
+}
 </style>

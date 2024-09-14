@@ -5,7 +5,7 @@
 
 /* Define accent color and make it available globally */
 :root {
-    --color-accent: oklch(65% 50% 0); /* Customize this value if you'd like a different accent color */
+    --color-accent: oklch(65% 50% 0); 
     --color-accent-light: oklch(95% 5% 0); /* Lighter version with same hue */
 
   }
