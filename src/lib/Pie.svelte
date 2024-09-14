@@ -30,10 +30,10 @@
 
 <div class="container">
   <svg viewBox="-50 -50 100 100">
-    {#each arcs as arc, index}
+    {#each data as d, index}
       <path
-        d={arc}
-        fill={colors(index)}
+        d={arcs[index]}
+        fill={colors(d.label)}
         class:selected={selectedIndex === index}
         tabindex="0"
         role="button"
@@ -50,7 +50,7 @@
   <ul class="legend">
     {#each data as d, index}
       <li
-        style="--color: {colors(index)}"
+        style="--color: {colors(d.label)}"
         class:selected={selectedIndex === index}
       >
         <span class="swatch"></span>
