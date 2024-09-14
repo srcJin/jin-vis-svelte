@@ -9,6 +9,12 @@
         return { name, lines };
       });
   }
+  // Step 2.3: Sorting files by number of lines
+  files = d3.sort(files, d => -d.lines.length);
+
+  let colors = d3.scaleOrdinal(d3.schemeTableau10);
+
+  
 </script>
 
 <dl class="files">
@@ -17,7 +23,11 @@
       <dt>
         <code>{file.name}</code>
       </dt>
-      <dd>{file.lines.length} lines</dd>
+        <dd>
+      {#each file.lines as line (line.line) }
+      <div class="line" style="--color: { colors(line.type) }"></div>
+      {/each}
+      </dd>
     </div>
   {/each}
 </dl>
@@ -52,4 +62,23 @@
     dt, dd {
       padding: 5px 0;
     }
+    .line {
+	display: flex;
+	width: .5em;
+	aspect-ratio: 1;
+	background:  var(--color);
+	border-radius: 50%;
+}
+
+dd {
+	grid-column: 2;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: start;
+	align-content: start;
+	gap: .15em;
+	padding-top: .6em;
+	margin-left: 0;
+}
+
   </style>
