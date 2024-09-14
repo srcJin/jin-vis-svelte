@@ -1,5 +1,7 @@
 <script>
  import * as d3 from "d3";
+ import {scale} from 'svelte/transition'
+
   let files = [];
   export let lines = [];
   $: {
@@ -25,7 +27,7 @@
       </dt>
         <dd>
       {#each file.lines as line (line.line) }
-      <div class="line" style="--color: { colors(line.type) }"></div>
+      <div class="line" style="--color: { colors(line.type) }" in:scale={{duration: 300, delay: 0}}></div>
       {/each}
       </dd>
     </div>
@@ -65,9 +67,11 @@
     .line {
 	display: flex;
 	width: .5em;
+    height: .5em;
 	aspect-ratio: 1;
 	background:  var(--color);
 	border-radius: 50%;
+    transform-origin: center; /* Ensures scaling happens centrally */
 }
 
 dd {
