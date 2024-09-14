@@ -22,7 +22,6 @@
   let totalCodeLines = 0;
   let selectedCommits = [];
 
-  let filteredLines;
 
   // Reactively Calculate work by periods
   $: workByPeriod = d3.rollups(
@@ -41,9 +40,15 @@
 
   let timeScale;
   let commitMaxTime;
+  let raceMaxTime;
   const d3Formatter = d3.format(".1~%");
 
-  let raceMaxTime;
+  $: timeScale = d3.scaleTime()
+        .domain(d3.extent(data, d => d.datetime))
+        .range([0, 100]);
+
+  $: commitMaxTime = timeScale.invert(commitProgress);
+  $: raceMaxTime = timeScale.invert(raceProgress);
 
 
   let colors = d3.scaleOrdinal(d3.schemeTableau10);
@@ -143,8 +148,6 @@
 
   $: filteredLines = data.filter((d) => d.datetime <= commitMaxTime);
 
-  $: raceCommits = commits.filter(commit => commit.datetime <= raceMaxTime);
-  $: raceLines = data.filter(data => data.datetime <= raceMaxTime)
 
   $: if (timeScale) {
     console.log("commitProgress=", commitProgress);
@@ -154,10 +157,10 @@
     filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
   }
 
-
   $: hasSelection = selectedCommits.length > 0;
   $: selectedLines = (hasSelection ? selectedCommits : filteredCommits).flatMap(d => d.lines);
 
+  $: raceLines = data.filter(data => data.datetime <= raceMaxTime)
 </script>
 
 <svelte:head>
@@ -165,50 +168,6 @@
 </svelte:head>
 
 <h1>Meta</h1>
-
-
-
-<Scrolly bind:progress={commitProgress}>
-
-  The story behind my commits
-  <div>
-    {#each commits as commit, index}
-      <p>
-        On {commit.datetime.toLocaleString("en", {dateStyle: "full", timeStyle: "short"})},
-        I made <a href="{commit.url}" target="_blank">
-        {index > 0 ? 'another glorious commit' : 'my first commit, and it was glorious'}
-        </a>.
-        I edited {commit.totalLines} lines across {d3.rollups(commit.lines, v => v.length, d => d.file).length} files.
-        Then I looked over all I had made, and I saw that it was very good.
-      </p>
-    {/each}
-  </div>
-
-  <svelte:fragment slot="viz">
-    <CommitScatterplot commits={filteredCommits} bind:selectedCommits={selectedCommits}/>
-    <Pie data={Array.from(languageBreakdown).map(([language, lines]) => ({
-      label: language,
-      value: lines,
-    }))}/>
-  </svelte:fragment>
-</Scrolly>
-
-
-
-<label for="commit-slider">
-  Filter by date and time:
-  <input
-    type="range"
-    id="commit-slider"
-    min="0"
-    max="100"
-    bind:value={commitProgress}
-    style="flex: 1;"
-  />
-  <time>{commitMaxTime ? commitMaxTime.toLocaleString() : "Loading..."}</time>
-</label>
-
-<FileLines lines={filteredLines} {colors} />
 
 <dl class="stats">
   <dt>Commits</dt>
@@ -228,17 +187,72 @@
 </dl>
 
 
+<h2>The story behind my commits</h2>
+<Scrolly bind:progress={commitProgress}>
 
-<ul class="language-breakdown">
-  {#each languageBreakdown as [language, lines]}
-    <li>
-      <strong>{language.toUpperCase()}</strong>
-      <div>{lines} lines ({d3Formatter(lines / totalCodeLines)})</div>
-    </li>
+
+
+  <div>
+    
+    {#each commits as commit, index}
+      <p>
+        On {commit.datetime.toLocaleString("en", {dateStyle: "full", timeStyle: "short"})},
+        I made <a href="{commit.url}" target="_blank">
+        {index > 0 ? 'another glorious commit' : 'my first commit, and it was glorious'}
+        </a>.
+        I edited {commit.totalLines} lines across {d3.rollups(commit.lines, v => v.length, d => d.file).length} files.
+        Then I looked over all I had made, and I saw that it was very good.
+      </p>
+    {/each}
+  </div>
+
+  <svelte:fragment slot="viz">
+    <label for="commit-slider">
+      Filter by date and time:
+      <input
+        type="range"
+        id="commit-slider"
+        min="0"
+        max="100"
+        bind:value={commitProgress}
+        style="flex: 1;"
+      />
+      <time>{commitMaxTime ? commitMaxTime.toLocaleString() : "Loading..."}</time>
+    </label>
+    <CommitScatterplot commits={filteredCommits} bind:selectedCommits={selectedCommits}/>
+    <ul class="language-breakdown">
+      {#each languageBreakdown as [language, lines]}
+        <li>
+          <strong>{language.toUpperCase()}</strong>
+          <div>{lines} lines ({d3Formatter(lines / totalCodeLines)})</div>
+        </li>
+      {/each}
+    </ul>
+    <Pie data={Array.from(languageBreakdown).map(([language, lines]) => ({
+      label: language,
+      value: lines,
+    }))}/>
+  </svelte:fragment>
+</Scrolly>
+
+<h2>My commits in dots</h2>
+<Scrolly bind:progress={raceProgress} --scrolly-layout="viz-first" --scrolly-viz-width="1.5fr">
+
+  {#each commits as commit, index }
+      <p>
+          On {commit.datetime.toLocaleString("en", {dateStyle: "full", timeStyle: "short"})},
+          I made <a href="{commit.url}" target="_blank">{ index > 0 ? 'another glorious commit' : 'my first commit, and it was glorious' }</a>.
+          I edited {commit.totalLines} lines across { d3.rollups(commit.lines, D => D.length, d => d.file).length } files.
+      </p>
   {/each}
-</ul>
+  <svelte:fragment slot="viz">
+      <FileLines lines={raceLines} colors={colors}/>
+  </svelte:fragment>
+</Scrolly>
 
-<div class="container">
+
+
+<!-- <div class="container">
   <CommitScatterplot commits={filteredCommits} bind:selectedCommits />
   <Pie
     data={Array.from(languageBreakdown).map(([language, lines]) => ({
@@ -246,8 +260,6 @@
       value: lines,
     }))}
   />
-
-  <!-- Display filtered commits -->
   <ul>
     {#if filteredCommits.length > 0}
       {#each filteredCommits as commit}
@@ -260,7 +272,7 @@
       <li>No commits available for the selected date range.</li>
     {/if}
   </ul>
-</div>
+</div> -->
 
 <style>
   :global(body) {
@@ -269,15 +281,29 @@
 
   .stats {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 20px; /* Adjust the gap between the columns */
-    text-align: center;
+    grid-template-columns: repeat(4, 1fr); /* Four columns */
+    gap: 10px; /* Space between grid items */
     background: #f9f9f9; /* Light grey background */
     padding: 20px;
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     font-family: Arial, sans-serif; /* Font style */
-  }
+}
+
+.stats dt, .stats dd {
+    margin: 0; /* Removes default margin */
+    padding: 5px 0; /* Adds padding on top and bottom */
+}
+
+.stats dt {
+    grid-column: span 1; /* Title takes one column */
+    text-align: center;
+}
+
+.stats dd {
+    grid-column: span 1; /* Value takes one column directly below the title */
+    text-align: center;
+}
 
   dt {
     font-size: 16px;

@@ -147,7 +147,7 @@
         class:selected={selectedIndex === index}
       >
         <span class="swatch"></span>
-        {d.label} <em>({d.value})</em>
+        {d.label} 
       </li>
     {/each}
   </ul>
