@@ -39,6 +39,8 @@
   let commitMaxTime;
   const d3Formatter = d3.format(".1~%");
 
+  let colors = d3.scaleOrdinal(d3.schemeTableau10);
+
   onMount(async () => {
     data = await d3.csv("loc.csv", (row) => ({
       ...row,
@@ -165,7 +167,7 @@
   <time>{commitMaxTime ? commitMaxTime.toLocaleString() : "Loading..."}</time>
 </label>
 
-<FileLines lines={filteredLines} />
+<FileLines lines={filteredLines} colors={colors} />
 
 <dl class="stats">
   <dt>Commits</dt>

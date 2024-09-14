@@ -12,8 +12,8 @@
 
   
   // Colors for each slice, use the schemePaired color scale
-  let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
+  export let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
   export let data = [];
   let pieData;
@@ -45,7 +45,7 @@
     {#each pieData as d, index}
       <path
         d={d.arc}
-        fill={colors(d.label)}
+        fill={colors(d.label ?? d.label)}
         class:selected={selectedIndex === index}
         tabindex="0"
         role="button"

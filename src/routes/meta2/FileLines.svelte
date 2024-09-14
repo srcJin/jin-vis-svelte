@@ -11,10 +11,11 @@
         return { name, lines };
       });
   }
+
+  export let colors = d3.scaleOrdinal(d3.schemeTableau10);
   // Step 2.3: Sorting files by number of lines
   files = d3.sort(files, d => -d.lines.length);
 
-  let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
   
 </script>
