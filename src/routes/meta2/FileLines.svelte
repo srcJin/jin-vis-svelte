@@ -2,6 +2,9 @@
  import * as d3 from "d3";
  import {scale} from 'svelte/transition'
 
+ import { flip as originalFlip } from "svelte/animate";
+
+
   let files = [];
   export let lines = [];
   $: {
@@ -16,13 +19,16 @@
   // Step 2.3: Sorting files by number of lines
   files = d3.sort(files, d => -d.lines.length);
 
-
+function getFlip () {
+	return originalFlip;
+}
+$: flip = getFlip(files);
   
 </script>
 
 <dl class="files">
   {#each files as file (file.name)}
-    <div>
+    <div animate:flip = {{delay:0, duration: 300}}>
       <dt>
         <code>{file.name}</code>
       </dt>
@@ -48,6 +54,8 @@
       grid-column: 1 / -1;
       display: grid;
       grid-template-columns: subgrid;
+      background: hsl(0 0% 100% / 90%);
+	box-shadow: 0 0 .2em .2em hsl(0 0% 100% / 90%);
     }
   
     /* <dt> elements occupy the first column */
