@@ -7,6 +7,8 @@
   import CommitScatterplot from "./Scatterplot.svelte";
   import FileLines from "./FileLines.svelte";
 
+  import Scrolly from "svelte-scrolly";
+
   let data = [];
   let commits = [];
   let stats = {};
@@ -20,7 +22,7 @@
   let totalCodeLines = 0;
   let selectedCommits = [];
 
-  let filteredLines
+  let filteredLines;
 
   // Reactively Calculate work by periods
   $: workByPeriod = d3.rollups(
@@ -38,6 +40,8 @@
   let timeScale;
   let commitMaxTime;
   const d3Formatter = d3.format(".1~%");
+
+  let raceProgress = 100;
 
   let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
@@ -73,7 +77,6 @@
       deepestLine: d3.max(data, (d) => d.depth),
     };
 
-
     // Now process the commits inside onMount or as a reactive statement
     commits = d3
       .groups(data, (d) => d.commit)
@@ -106,7 +109,6 @@
     // Sort the commits data by totalLines in descending order so smaller dots are painted last and are less likely to be obscured by larger ones
     commits = d3.sort(commits, (d) => -d.totalLines);
 
-
     console.log("languageBreakdown=", languageBreakdown);
 
     console.log("commits before creating timeScale:", commits);
@@ -128,8 +130,6 @@
   // Calculate total lines in the selectedLines dataset
   $: totalCodeLines = d3.sum(selectedLines, (d) => d.length); // Sum of all lines in selectedLines
 
-  
-
   console.log("selectedLines=", selectedLines);
 
   // Then, we can use it to calculate the number of edited lines per language using d3.rollup() (or d3.rollups()), which we discussed earlier. Assign the result to a new reactive variable called languageBreakdown.
@@ -150,9 +150,45 @@
   }
 
   $: filteredLines = data.filter((d) => d.datetime <= commitMaxTime);
+
+  $: if (data.length > 0) {
+  commits = processCommits(data); // Ensure this is a reactive function
+}
 </script>
 
+<svelte:head>
+    <title>Meta</title>
+</svelte:head>
+
 <h1>Meta</h1>
+
+
+
+<Scrolly bind:progress={commitProgress}>
+
+  The story behind my commits
+  <div>
+    {#each commits as commit, index}
+      <p>
+        On {commit.datetime.toLocaleString("en", {dateStyle: "full", timeStyle: "short"})},
+        I made <a href="{commit.url}" target="_blank">
+        {index > 0 ? 'another glorious commit' : 'my first commit, and it was glorious'}
+        </a>.
+        I edited {commit.totalLines} lines across {d3.rollups(commit.lines, v => v.length, d => d.file).length} files.
+        Then I looked over all I had made, and I saw that it was very good.
+      </p>
+    {/each}
+  </div>
+
+  <svelte:fragment slot="viz">
+    <CommitScatterplot commits={filteredCommits} bind:selectedCommits={selectedCommits}/>
+    <Pie data={Array.from(languageBreakdown).map(([language, lines]) => ({
+      label: language,
+      value: lines,
+    }))}/>
+  </svelte:fragment>
+</Scrolly>
+
 
 <label for="commit-slider">
   Filter by date and time:
@@ -167,7 +203,7 @@
   <time>{commitMaxTime ? commitMaxTime.toLocaleString() : "Loading..."}</time>
 </label>
 
-<FileLines lines={filteredLines} colors={colors} />
+<FileLines lines={filteredLines} {colors} />
 
 <dl class="stats">
   <dt>Commits</dt>
@@ -196,17 +232,13 @@
 </ul>
 
 <div class="container">
-  <CommitScatterplot commits={filteredCommits} bind:selectedCommits={selectedCommits}/>
+  <CommitScatterplot commits={filteredCommits} bind:selectedCommits />
   <Pie
     data={Array.from(languageBreakdown).map(([language, lines]) => ({
       label: language,
       value: lines,
     }))}
   />
-
-
-
-
 
   <!-- Display filtered commits -->
   <ul>
@@ -221,10 +253,13 @@
       <li>No commits available for the selected date range.</li>
     {/if}
   </ul>
-
 </div>
 
 <style>
+  :global(body) {
+    max-width: min(120ch, 80vw);
+  }
+
   .stats {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
