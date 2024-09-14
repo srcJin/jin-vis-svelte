@@ -7,7 +7,8 @@ let pages = [
     { url: "projects", title: "Projects" },
     { url: "contact", title: "Contact" },
     { url: "cv", title: "CV" },
-    { url: "meta", title: "Meta"},
+    { url: "meta1", title: "Meta1"},
+    { url: "meta2", title: "Meta2"},
     { url: "https://github.com/srcJin", title: "GitHub" },
     { url: "map", title: "Map"}
 ];
