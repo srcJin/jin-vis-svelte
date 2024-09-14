@@ -8,7 +8,11 @@
   let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
 
   // Calculate start and end angles for each slice
-  let sliceGenerator = d3.pie().value((d) => d.value);
+  // disable sorting in the pie by adding .sort(null) after the call to d3.pie()
+  // to avoid out of sync with our data
+  let sliceGenerator = d3.pie().value(d => d.value).sort(null);
+
+
 
   
   // Colors for each slice, use the schemePaired color scale
@@ -19,6 +23,7 @@
   let pieData;
 
   $: {
+  pieData = d3.sort(data, d => d.label);
   pieData = data.map(d => ({...d}));
   let arcData = sliceGenerator(pieData);
   let arcs = arcData.map((d) => arcGenerator(d));
