@@ -31,7 +31,12 @@ input, textarea, button {
     font: inherit;
 }
 
-
+      /* Big title centered */
+      h1.big-title {
+        font-size: 2em;
+        margin-bottom: 40px;
+        text-align: center;
+      }
 
 /* Apply grid layout to the form */
 form {
