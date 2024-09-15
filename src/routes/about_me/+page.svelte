@@ -2,12 +2,13 @@
 <title>Contact me</title>
 </svelte:head>
 
+
+<h1>CV</h1>
+
+
+<h1>Contact me</h1>
+
 <form id="contactForm" action="mailto:gaojin@mit.edu" method="GET">
-    <!-- <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" placeholder="email" />
-    </div>
-     -->
     <div class="form-group">
       <label for="subject">Subject:</label>
       <input type="text" id="subject" name="subject" placeholder="subject" />

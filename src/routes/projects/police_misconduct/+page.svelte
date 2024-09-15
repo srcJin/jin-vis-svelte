@@ -162,9 +162,14 @@
 </script>
 
 
-<h2>Police Misconduct is a Collective Practice Influenced by Their Surroundings 
-</h2>
-<h3>A Drawing Highlighting Dinstive Precinct Social Networks</h3>
+<h1>Police Misconduct is a Collective Practice Influenced by Their Surroundings 
+</h1>
+<h2>A Drawing Highlighting Dinstive Precinct Social Networks</h2>
+
+    <h2>
+        <a href="/assignments/a4/" target="_blank">Design Document</a>
+    </h2>
+
 
 <div id="container"></div>
 

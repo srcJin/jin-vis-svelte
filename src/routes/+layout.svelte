@@ -23,6 +23,9 @@
         { type: "link", url: "/projects/silkroad_urbanism", title: "Silkroad Urbanism"},
         { type: "link", url: "/projects/the_third_nature", title: "The Third Nature"},
         { type: "link", url: "/projects/boston_land_value", title: "Boston Land Value"},
+
+        { type: "divider", title: "Visualization for Business" },
+        { type: "link", url: "/projects/communicate_with_data", title: "Communicate with Data"},
       ],
     },
     {
