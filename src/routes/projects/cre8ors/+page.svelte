@@ -4,9 +4,9 @@
 
 <main>
     <h1>Cre8ors</h1>
-    <h2>6.1040 Software Design Course Project</h2>
+    <h3>6.1040 Software Design Course Project</h3>
     <h3>Collaborators: Sonia, Kiwhan, Esther</h3>
-    <h3><a href="https://cre8ors-61040.vercel.app/" target="_blank">Live Demo</a></h3>
+    <h2><a href="https://cre8ors-61040.vercel.app/" target="_blank">Live Demo</a></h2>
     <h4>Test username: test  Password: test</h4>
 
 

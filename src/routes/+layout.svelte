@@ -17,7 +17,7 @@
         { type: "link", url: "/projects/cre8ors", title: "Cre8ors" },
         { type: "link", url: "/projects/covid_map", title: "Covid Risk Level Map" },
         { type: "link", url: "/projects/weehive", title: "WeeHive" },
-        { type: "link", url: "/projects/from_sketch_to_design", title: "From Sketch to Design"},
+        // { type: "link", url: "/projects/from_sketch_to_design", title: "From Sketch to Design"},
 
         { type: "divider", title: "GIS Visualization" },
         { type: "link", url: "/projects/silkroad_urbanism", title: "Silkroad Urbanism"},
