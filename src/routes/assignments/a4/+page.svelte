@@ -638,7 +638,7 @@ h1, h2 {
 
 h1 {
 	margin-block: 1em .5rem;
-	font-size: clamp(2.5em, 150% + 2vh + 2vw, 10vmin);
+	font-size: clamp(2.5em, 150% + 2vh + 2vw, 5vmin);
 	font-weight: 700;
 
 	small {

@@ -7,7 +7,7 @@
   <title>Home</title>
 </svelte:head>
 
-<h1 class="big-title">Welcome to Jin's Visualization Box</h1>
+<h1 class="big-title">Welcome to Jin's Visualization Treasure Box</h1>
 <img src="images/tim.jpg" alt="Tim's photo" width="200" height="200" />
 
 <div class="projects">

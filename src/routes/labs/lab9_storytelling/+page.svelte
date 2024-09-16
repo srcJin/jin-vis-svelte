@@ -54,7 +54,7 @@
   let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
   onMount(async () => {
-    data = await d3.csv("loc.csv", (row) => ({
+    data = await d3.csv("/loc.csv", (row) => ({
       ...row,
       line: +row.line,
       depth: +row.depth,
