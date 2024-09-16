@@ -165,6 +165,8 @@
         width: 100%;
         height: auto;
         margin-bottom: 20px;
+        border-radius: 5px; /* Optional: for rounded corners */
+
     }
     ul {
         margin-left: 20px;
@@ -180,10 +182,5 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 10px;
-    }
-    img {
-        width: 100%;
-        height: auto;
-        border-radius: 5px; /* Optional: for rounded corners */
     }
 </style>
