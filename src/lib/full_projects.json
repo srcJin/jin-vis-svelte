@@ -1,0 +1,194 @@
+[
+    {
+        "title": "MBTA Upzone+",
+        "image": "https://yourimageurl.com/image.svg",
+        "link": "/projects/mbta-upzone",
+        "category": "Projects",
+        "type": "6.C85 Course Projects",
+        "year": "2022",
+        "description": "Project description goes here.",
+        "featured": true
+    },
+    {
+        "title": "Police Misconduct",
+        "image": "https://yourimageurl.com/image.svg",
+        "link": "/projects/police-misconduct",
+        "category": "Projects",
+        "type": "6.C85 Course Projects",
+        "year": "2022",
+        "description": "Project description goes here.",
+        "featured": true
+    },
+    {
+        "title": "The Death and Life of American Population",
+        "image": "https://yourimageurl.com/image.svg",
+        "link": "/projects/death-life-american-pop",
+        "category": "Projects",
+        "type": "6.C85 Course Projects",
+        "year": "2022",
+        "description": "Project description goes here.",
+        "featured": true
+    },
+    {
+        "title": "Urban Mediators",
+        "image": "https://yourimageurl.com/image.svg",
+        "link": "/projects/urban-mediators",
+        "category": "Projects",
+        "type": "Web Applications",
+        "year": "2022",
+        "description": "Project description goes here.",
+        "featured": true
+    },
+    {
+        "title": "Cre8ors",
+        "image": "https://yourimageurl.com/image.svg",
+        "link": "/projects/cre8ors",
+        "category": "Projects",
+        "type": "Web Applications",
+        "year": "2022",
+        "description": "Project description goes here.",
+        "featured": true
+    },
+    {
+        "title": "Covid Risk Level Map",
+        "image": "https://yourimageurl.com/image.svg",
+        "link": "/projects/covid-risk-map",
+        "category": "Projects",
+        "type": "Web Applications",
+        "year": "2022",
+        "description": "Project description goes here.",
+        "featured": true
+    },
+    {
+        "title": "WeeHive",
+        "image": "https://yourimageurl.com/image.svg",
+        "link": "/projects/weehive",
+        "category": "Projects",
+        "type": "Web Applications",
+        "year": "2022",
+        "description": "Project description goes here.",
+        "featured": true
+    },
+    {
+        "title": "Silkroad Urbanism",
+        "image": "https://yourimageurl.com/image.svg",
+        "link": "/projects/silkroad-urbanism",
+        "category": "Projects",
+        "type": "GIS Visualization",
+        "year": "2022",
+        "description": "Project description goes here.",
+        "featured": true
+    },
+    {
+        "title": "The Third Nature",
+        "image": "https://yourimageurl.com/image.svg",
+        "link": "/projects/third-nature",
+        "category": "Projects",
+        "type": "GIS Visualization",
+        "year": "2022",
+        "description": "Project description goes here.",
+        "featured": true
+    },
+    {
+        "title": "Boston Land Value",
+        "image": "https://yourimageurl.com/image.svg",
+        "link": "/projects/boston-land-value",
+        "category": "Projects",
+        "type": "GIS Visualization",
+        "year": "2022",
+        "description": "Project description goes here.",
+        "featured": true
+    },
+    {
+        "title": "Communicate with Data",
+        "image": "https://yourimageurl.com/image.svg",
+        "link": "/projects/communicate-with-data",
+        "category": "Projects",
+        "type": "Visualization for Business",
+        "year": "2022",
+        "description": "Project description goes here.",
+        "featured": true
+    },
+    {
+        "title": "Assignment 2 Exploratory Data Analysis",
+        "image": "https://yourimageurl.com/image.svg",
+        "link": "/projects/communicate-with-data",
+        "category": "Assignments",
+        "year": "2024",
+        "description": "Project description goes here.",
+        "featured": true
+    },
+    {
+        "title": "Assignment 3 Visualization Design",
+        "image": "https://yourimageurl.com/image.svg",
+        "link": "/projects/communicate-with-data",
+        "category": "Assignments",
+        "year": "2024",
+        "description": "Project description goes here.",
+        "featured": true
+    },
+    {
+        "title": "Assignment 4 Persuasive or Deceptive Visualization?",
+        "image": "https://yourimageurl.com/image.svg",
+        "link": "/projects/communicate-with-data",
+        "category": "Assignments",
+        "year": "2024",
+        "description": "Project description goes here.",
+        "featured": true
+    },
+    {
+        "title": "Lab 0-3: Static Page",
+        "image": "https://yourimageurl.com/image.svg",
+        "link": "/labs/static-page",
+        "category": "Labs",
+        "year": "2024",
+        "description": "Introduction to basic HTML and CSS to create static web pages.",
+        "featured": true
+    },
+    {
+        "title": "Lab 4-5: Svelte",
+        "image": "https://yourimageurl.com/image.svg",
+        "link": "/labs/svelte",
+        "category": "Labs",
+        "year": "2024",
+        "description": "Exploring the Svelte framework to build reactive web applications.",
+        "featured": true
+    },
+    {
+        "title": "Lab 6: Project Grids",
+        "image": "https://yourimageurl.com/image.svg",
+        "link": "/labs/project-grids",
+        "category": "Labs",
+        "year": "2024",
+        "description": "Designing and implementing responsive grid layouts for project displays.",
+        "featured": true
+    },
+    {
+        "title": "Lab 7: Commit Meta",
+        "image": "https://yourimageurl.com/image.svg",
+        "link": "/labs/commit-meta",
+        "category": "Labs",
+        "year": "2024",
+        "description": "Using Git metadata to analyze project development and team contributions.",
+        "featured": true
+    },
+    {
+        "title": "Lab 8: Bikewatching",
+        "image": "https://yourimageurl.com/image.svg",
+        "link": "/labs/bikewatching",
+        "category": "Labs",
+        "year": "2024",
+        "description": "Studying urban mobility patterns through the lens of bikeshare usage data.",
+        "featured": true
+    },
+    {
+        "title": "Lab 9: Storytelling",
+        "image": "https://yourimageurl.com/image.svg",
+        "link": "/labs/storytelling",
+        "category": "Labs",
+        "year": "2024",
+        "description": "Learning to convey complex data through narrative and visual storytelling techniques.",
+        "featured": true
+    }
+
+]
