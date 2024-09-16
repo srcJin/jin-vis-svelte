@@ -1,180 +1,180 @@
 [
     {
         "title": "MBTA Upzone+",
-        "image": "https://yourimageurl.com/image.svg",
-        "link": "/projects/mbta-upzone",
+        "image": "/images/projects/mbta_upzone/mbta_upzone.gif",
+        "link": "/projects/mbta_upzone",
         "category": "Projects",
         "type": "6.C85 Course Projects",
         "year": "2022",
-        "description": "Project description goes here.",
+        "description": "An innovative interactive tool for exploring the potential impacts of multi-family zoning near transit stations in Milton, MA.",
         "featured": true
     },
     {
-        "title": "Police Misconduct",
-        "image": "https://yourimageurl.com/image.svg",
-        "link": "/projects/police-misconduct",
+        "title": "New York Police Misconduct",
+        "image": "/images/a4/police_misconduct.gif",
+        "link": "/projects/police_misconduct",
         "category": "Projects",
         "type": "6.C85 Course Projects",
         "year": "2022",
-        "description": "Project description goes here.",
+        "description": "A Drawing Highlighting Dinstive Precinct Social Networks",
         "featured": true
     },
     {
         "title": "The Death and Life of American Population",
-        "image": "https://yourimageurl.com/image.svg",
-        "link": "/projects/death-life-american-pop",
+        "image": "/images/a3/a3.png",
+        "link": "/projects/american_population",
         "category": "Projects",
         "type": "6.C85 Course Projects",
         "year": "2022",
-        "description": "Project description goes here.",
+        "description": "a Visualization for Dramatic Events on Population Change of the US",
         "featured": true
     },
     {
         "title": "Urban Mediators",
-        "image": "https://yourimageurl.com/image.svg",
-        "link": "/projects/urban-mediators",
+        "image": "/images/projects/urban_mediators/urban_mediators1.jpg",
+        "link": "/projects/urban_mediators",
         "category": "Projects",
         "type": "Web Applications",
         "year": "2022",
-        "description": "Project description goes here.",
+        "description": "a web-based strategic board game to immerse stakeholders in the complexities of urban planning and management.",
         "featured": true
     },
     {
         "title": "Cre8ors",
-        "image": "https://yourimageurl.com/image.svg",
+        "image": "/images/projects/cre8ors/cre8ors.gif",
         "link": "/projects/cre8ors",
         "category": "Projects",
         "type": "Web Applications",
         "year": "2022",
-        "description": "Project description goes here.",
-        "featured": true
+        "description": "Cre8ors is a collaborative, intelligence web mindmap tool that allows users to create, share, and explore mindmaps with AI.",
+        "featured": false
     },
     {
         "title": "Covid Risk Level Map",
-        "image": "https://yourimageurl.com/image.svg",
+        "image": "/images/projects/covid_map/covid_reverse_loop.gif",
         "link": "/projects/covid-risk-map",
         "category": "Projects",
         "type": "Web Applications",
         "year": "2022",
-        "description": "Project description goes here.",
+        "description": "An interactive map records the whole process from the beginning to the end of covid risk level policy in China.",
         "featured": true
     },
     {
         "title": "WeeHive",
-        "image": "https://yourimageurl.com/image.svg",
+        "image": "/images/projects/weehive/weehive.png",
         "link": "/projects/weehive",
         "category": "Projects",
         "type": "Web Applications",
         "year": "2022",
-        "description": "Project description goes here.",
-        "featured": true
+        "description": "An innovative smart beekeeping platform designed to cater to the needs of beekeepers.",
+        "featured": false
     },
     {
         "title": "Silkroad Urbanism",
-        "image": "https://yourimageurl.com/image.svg",
-        "link": "/projects/silkroad-urbanism",
+        "image": "/images/projects/silkroad_urbanism/SilkroadUrbanism5.png",
+        "link": "/projects/silkroad_urbanism",
         "category": "Projects",
         "type": "GIS Visualization",
         "year": "2022",
-        "description": "Project description goes here.",
+        "description": "A research on the urbanization of the Silk Road region and its impact on the environment and society.",
         "featured": true
     },
     {
         "title": "The Third Nature",
-        "image": "https://yourimageurl.com/image.svg",
+        "image": "/images/projects/the_third_nature/the_third_nature.png",
         "link": "/projects/third-nature",
         "category": "Projects",
         "type": "GIS Visualization",
         "year": "2022",
-        "description": "Project description goes here.",
+        "description": "A research exploring the decommissioning of dams in mainland China, to address the evolving debate on their utility and environmental impact.",
         "featured": true
     },
     {
         "title": "Boston Land Value",
-        "image": "https://yourimageurl.com/image.svg",
+        "image": "/images/projects/boston_land_value/boston_land_value.png",
         "link": "/projects/boston-land-value",
         "category": "Projects",
         "type": "GIS Visualization",
         "year": "2022",
-        "description": "Project description goes here.",
-        "featured": true
+        "description": "A GIS based project that visualizes the typologies of land value pattern and its related urban morphology of Boston, MA.",
+        "featured": false
     },
     {
         "title": "Communicate with Data",
-        "image": "https://yourimageurl.com/image.svg",
+        "image": "/images/projects/communicate_with_data/communicate_with_data.png",
         "link": "/projects/communicate-with-data",
         "category": "Projects",
         "type": "Visualization for Business",
         "year": "2022",
-        "description": "Project description goes here.",
-        "featured": true
+        "description": "Business data visualizations that aims to help business owners understand their data and make informed decisions.",
+        "featured": false
     },
     {
-        "title": "Assignment 2 Exploratory Data Analysis",
-        "image": "https://yourimageurl.com/image.svg",
-        "link": "/projects/communicate-with-data",
+        "title": "Exploratory Data Analysis",
+        "image": "/images/a2/exploratoy.png",
+        "link": "/assignments/a2",
         "category": "Assignments",
         "year": "2024",
-        "description": "Project description goes here.",
-        "featured": true
+        "description": "Exploring the Boston zoning remormation data using Tableau.",
+        "featured": false
     },
     {
-        "title": "Assignment 3 Visualization Design",
-        "image": "https://yourimageurl.com/image.svg",
-        "link": "/projects/communicate-with-data",
+        "title": "Visualization Design",
+        "image": "/images/a3/design.png",
+        "link": "/assignments/a3",
         "category": "Assignments",
         "year": "2024",
-        "description": "Project description goes here.",
-        "featured": true
+        "description": "Sketch, wireframe, and design a visualization for the US population change dataset.",
+        "featured": false
     },
     {
-        "title": "Assignment 4 Persuasive or Deceptive Visualization?",
-        "image": "https://yourimageurl.com/image.svg",
-        "link": "/projects/communicate-with-data",
+        "title": "Persuasive or Deceptive Visualization?",
+        "image": "/images/a4/police_misconduct.gif",
+        "link": "/assignments/a4",
         "category": "Assignments",
         "year": "2024",
-        "description": "Project description goes here.",
-        "featured": true
+        "description": "Using persuasive and deceptive techniques to visualize the New York police misconduct data.",
+        "featured": false
     },
     {
         "title": "Lab 0-3: Static Page",
-        "image": "https://yourimageurl.com/image.svg",
-        "link": "/labs/static-page",
+        "image": "/images/labs/lab0_3.png",
+        "link": "https://srcjin.github.io/vis_lab_0_3/",
         "category": "Labs",
         "year": "2024",
         "description": "Introduction to basic HTML and CSS to create static web pages.",
-        "featured": true
+        "featured": false
     },
     {
         "title": "Lab 4-5: Svelte",
-        "image": "https://yourimageurl.com/image.svg",
+        "image": "/images/labs/lab4_5.gif",
         "link": "/labs/svelte",
         "category": "Labs",
         "year": "2024",
         "description": "Exploring the Svelte framework to build reactive web applications.",
-        "featured": true
+        "featured": false
     },
     {
         "title": "Lab 6: Project Grids",
-        "image": "https://yourimageurl.com/image.svg",
+        "image": "/images/labs/lab6.gif",
         "link": "/labs/project-grids",
         "category": "Labs",
         "year": "2024",
         "description": "Designing and implementing responsive grid layouts for project displays.",
-        "featured": true
+        "featured": false
     },
     {
         "title": "Lab 7: Commit Meta",
-        "image": "https://yourimageurl.com/image.svg",
+        "image": "/images/labs/lab7.png",
         "link": "/labs/commit-meta",
         "category": "Labs",
         "year": "2024",
         "description": "Using Git metadata to analyze project development and team contributions.",
-        "featured": true
+        "featured": false
     },
     {
         "title": "Lab 8: Bikewatching",
-        "image": "https://yourimageurl.com/image.svg",
+        "image": "/images/labs/lab8.gif",
         "link": "/labs/bikewatching",
         "category": "Labs",
         "year": "2024",
@@ -183,12 +183,11 @@
     },
     {
         "title": "Lab 9: Storytelling",
-        "image": "https://yourimageurl.com/image.svg",
+        "image": "/images/labs/lab9.gif",
         "link": "/labs/storytelling",
         "category": "Labs",
         "year": "2024",
         "description": "Learning to convey complex data through narrative and visual storytelling techniques.",
         "featured": true
     }
-
 ]

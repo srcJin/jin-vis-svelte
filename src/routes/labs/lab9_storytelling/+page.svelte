@@ -198,10 +198,9 @@
       <p>
         On {commit.datetime.toLocaleString("en", {dateStyle: "full", timeStyle: "short"})},
         I made <a href="{commit.url}" target="_blank">
-        {index > 0 ? 'another glorious commit' : 'my first commit, and it was glorious'}
+        {index > 0 ? 'a commit' : 'my first commit, and it was glorious'}
         </a>.
         I edited {commit.totalLines} lines across {d3.rollups(commit.lines, v => v.length, d => d.file).length} files.
-        Then I looked over all I had made, and I saw that it was very good.
       </p>
     {/each}
   </div>

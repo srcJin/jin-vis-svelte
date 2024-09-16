@@ -1,46 +1,49 @@
 <script>
-    export let data = {};
+    export let data = {}; // This defines the prop that will be passed from the parent 
     export let hLevel = 2;
-    export let layout = "left"; // Default layout is "left"
-</script>
+  </script>
 
-<article class={layout === "left" ? "layout-left" : "layout-right"}>
-    {#if layout === "left"}
+<article>
+    <a href={data.link} style="text-decoration: none; color: inherit;">
         <img src={data.image} alt="" class="article-img">
-        <div class="text-content">
-            <svelte:element this={"h" + hLevel}>{ data.title }</svelte:element>
-            <p>{data.description}</p>
-        </div>
-    {:else}
-        <div class="text-content">
-            <svelte:element this={"h" + hLevel}>{ data.title }</svelte:element>
-            <p>{data.description}</p>
-        </div>
-        <img src={data.image} alt="" class="article-img">
-    {/if}
+        <svelte:element this={"h" + hLevel}>{ data.title }</svelte:element>
+    </a>
+    <p>{data.description}</p>
 </article>
 
 <style>
-.layout-left, .layout-right {
+
+article {
     display: grid;
-    gap: 0.5em;
-}
-
-.layout-left {
-    grid-template-columns: 1fr 2fr; /* Image 1/3, text 2/3 */
-}
-
-.layout-right {
-    grid-template-columns: 2fr 1fr; /* Text 2/3, image 1/3 */
+    grid-template-rows: subgrid;
+    grid-row: span 3;
+    gap: 0.1em; /* 减少 gap 使得标题和描述之间更紧凑 */
+    text-align: center;
+    padding: 0.1em;
+    margin-bottom: 0.5em; /* 增加文章之间的距离 */
 }
 
 .article-img {
     width: 100%;
     height: auto;
-    aspect-ratio: 1; /* Square image */
+    aspect-ratio: 1;
 }
 
-.text-content h2, .text-content h3 {
-    margin: 0;
+h2 {
+    margin: 0; /* 保持标题的紧凑性 */
 }
+
+p {
+    margin-top: -0.5em; /* 减少描述与标题之间的距离 */
+    margin-bottom: 0; /* 去除描述的下边距 */
+    line-height: 1.4em; /* 增加可读性 */
+    font-size: 1em; /* 减小描述的字体大小 */
+    text-align: left;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 </style>

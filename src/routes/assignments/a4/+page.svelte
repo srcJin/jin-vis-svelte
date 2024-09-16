@@ -156,7 +156,7 @@
 
     <section>
         <figure>
-            <img src="/images/a4/persuasive.png" alt="" />
+            <img src="/images/a4/police_misconduct.gif" alt="" />
             <figcaption>
                 The Police Misconduct is a Collective Practice Influenced by Their Surroundings : a Drawing
                 Highlighting Dinstive Precinct Social Networks
@@ -164,7 +164,7 @@
         </figure>
 
         <h3 style="text-align: center;">
-            <a href="/projects/police_misconduct">Click here for the animated version</a>
+            <a href="/projects/police_misconduct">Click here for the interactive version</a>
           </h3>
 
         <h3>Design Decisions and Rationale:</h3>

@@ -386,7 +386,7 @@
   }
 
   svg {
-    overflow: visible;
+    /* overflow: visible; */
   }
 
   .gridlines {
