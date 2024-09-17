@@ -5,7 +5,9 @@ const config = {
 	kit: {
 		adapter: adapter({ fallback: '404.html' }),
 		paths: {
-			base: process.argv.includes('dev') ? '' : process.env.BASE_PATH,
+			// base: process.argv.includes('dev') ? '' : process.env.BASE_PATH,
+			// set base path
+			base: process.env.NODE_ENV === 'production' ? '/jin-vis-svelte' : '',
 		},
 	},
 };
