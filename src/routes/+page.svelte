@@ -1,5 +1,6 @@
 <script>
   import ProjectGallery from "../lib/ProjectGallery.svelte";
+  import { base } from "$app/paths";
 </script>
 
 <svelte:head>
@@ -10,7 +11,7 @@
 
 <div class="self-intro-container">
   <div class="image-container">
-    <img src="images/portrait_flipped.jpg" alt="Tim's photo" />
+    <img src="{base}/images/portrait_flipped.jpg" alt="Tim's photo" />
   </div>
   <div class="text-container">
     <h2>Hi, I'm Jin!</h2>
