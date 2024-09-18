@@ -5,8 +5,8 @@
   </script>
 
 <article>
-    <a href={base + "/" + data.link} style="text-decoration: none; color: inherit;">
-        <img src={base + "/" + data.image} alt="" class="article-img">
+    <a href={base  + data.link} style="text-decoration: none; color: inherit;">
+        <img src={base  + data.image} alt="" class="article-img">
         <svelte:element this={"h" + hLevel}>{ data.title }</svelte:element>
     </a>
     <p>{data.description}</p>
