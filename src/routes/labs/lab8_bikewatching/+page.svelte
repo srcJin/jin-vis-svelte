@@ -48,7 +48,7 @@
   onMount(async () => {
     console.log("Fetching stations...");
 
-    let fetchedStations = await d3.csv("/bluebikes-stations.csv", (row) => ({
+    let fetchedStations = await d3.csv(base + "/bluebikes-stations.csv", (row) => ({
       ...row,
       Lat: +row.Lat,
       Long: +row.Long,
