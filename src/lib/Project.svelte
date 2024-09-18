@@ -5,7 +5,7 @@
   </script>
 
 <article>
-    <svelte:element this={"h" + hLevel}>{ data.title }</svelte:element>    <img src={data.image} alt="">
+    <svelte:element this={"h" + hLevel}>{ data.title }</svelte:element>    <img src={base+ "/" + data.image} alt="">
     <p>{data.description}</p>
     <!-- <p>{data.year}</p> -->
 </article>
