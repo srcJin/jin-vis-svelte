@@ -10,7 +10,7 @@
   let data;
 
   onMount(async () => {
-    data = await fetch(base + "a4_data_full.json").then((response) =>
+    data = await fetch(base + "/a4_data_full.json").then((response) =>
       response.json()
     );
 
