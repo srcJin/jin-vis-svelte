@@ -2,6 +2,10 @@
     <title>Communicate with Data</title>
 </svelte:head>
 
+<script>
+    import { base } from "$app/paths";
+</script>
+
 <main>
     <h1>Communicate with Data</h1>
     <h2>Practice 1: Analyze and Redraw a Graph</h2>

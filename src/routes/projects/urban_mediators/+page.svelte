@@ -2,6 +2,10 @@
   <title>Urban Mediators</title>
 </svelte:head>
 
+<script>
+  import { base } from "$app/paths";
+</script>
+
 <main>
   <h1>Urban Mediators</h1>
   <h2>An AI-driven multi-stakeholder urban planning game</h2>

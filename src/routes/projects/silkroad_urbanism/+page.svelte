@@ -2,6 +2,10 @@
   <title>Silkroad Urbanism</title>
 </svelte:head>
 
+<script>
+  import { base } from "$app/paths";
+</script>
+
 <main>
   <h1>Silkroad Urbanism</h1>
   <h3>The Making of Cities Course Research</h3>

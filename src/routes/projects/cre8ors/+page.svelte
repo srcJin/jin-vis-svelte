@@ -2,6 +2,10 @@
     <title>Cre8ors - Collaborative Mindmap</title>
 </svelte:head>
 
+<script>
+    import { base } from "$app/paths";
+</script>
+
 <main>
     <h1>Cre8ors</h1>
     <h3>6.1040 Software Design Course Project</h3>

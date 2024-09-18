@@ -2,6 +2,10 @@
     <title>The Third Nature</title>
 </svelte:head>
 
+<script>
+    import { base } from "$app/paths";
+</script>
+
 <main>
     <h1>The Third Nature</h1>
     <h2>An Epitaph of the Disappearing Dams</h2>

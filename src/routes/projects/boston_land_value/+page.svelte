@@ -2,6 +2,10 @@
   <title>Land Value and Urban Form in Boston</title>
 </svelte:head>
 
+<script>
+  import { base } from "$app/paths";
+</script>
+
 <main>
   <h1>Land Value and Urban Form in Boston</h1>
   <h3>

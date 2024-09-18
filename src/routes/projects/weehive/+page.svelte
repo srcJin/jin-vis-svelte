@@ -2,6 +2,10 @@
     <title>WeeHive - A Collaborative Beekeeping Solution for Uncertain Climate Era</title>
 </svelte:head>
 
+<script>
+    import { base } from "$app/paths";
+</script>
+
 <main>
     <h1>WeeHive - A Collaborative Beekeeping Solution for Uncertain Climate Era</h1>
     <p>WeeHive is an innovative smart beekeeping platform designed to cater to the needs of beekeepers in China. The platform consists of a bee hive monitoring hardware system and a user-friendly WeChat mini-program that helps beekeepers monitor Bee hive data.</p>

@@ -2,6 +2,10 @@
     <title>MBTA Upzone +</title>
 </svelte:head>
 
+<script>
+    import { base } from "$app/paths";
+</script>
+
 <main>
     <h1>MBTA Upzone +</h1>
     <h2>6.C85 Final Project</h2>
