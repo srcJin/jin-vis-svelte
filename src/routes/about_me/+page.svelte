@@ -2,6 +2,11 @@
   <title>Contact me</title>
 </svelte:head>
 
+<script>
+  import { base } from "$app/paths";
+</script>
+
+
 <main>
   <mytitle>Jin Gao</mytitle>
   <h1>Contact me</h1>

@@ -3,6 +3,11 @@
 </svelte:head>
 
 
+<script>
+    import { base } from "$app/paths";
+  </script>
+  
+
 <header>
     <h1>
         <small>Assignment 3</small>

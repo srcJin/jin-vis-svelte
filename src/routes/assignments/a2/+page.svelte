@@ -2,6 +2,10 @@
   <title>Assignment 2</title>
 </svelte:head>
 
+<script>
+  import { base } from "$app/paths";
+</script>
+
 <header>
   <h1>
     <small>Assignment 2</small>
