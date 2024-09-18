@@ -6,7 +6,7 @@
 </h1>
 
     <h2>
-        <a href="/assignments/a3/" target="_blank">Design Document</a>
+        <a href="{base}/assignments/a3/" target="_blank">Design Document</a>
     </h2>
 
 

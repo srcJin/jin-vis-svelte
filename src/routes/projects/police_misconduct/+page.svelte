@@ -168,7 +168,7 @@
 <h2>A Drawing Highlighting Dinstive Precinct Social Networks</h2>
 
     <h2>
-        <a href="/assignments/a4/" target="_blank">Design Document</a>
+        <a href="{base}/assignments/a4/" target="_blank">Design Document</a>
     </h2>
 
 

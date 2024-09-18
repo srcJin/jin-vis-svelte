@@ -164,7 +164,7 @@
         </figure>
 
         <h3 style="text-align: center;">
-            <a href="/projects/police_misconduct">Click here for the interactive version</a>
+            <a href="{base}/projects/police_misconduct">Click here for the interactive version</a>
           </h3>
 
         <h3>Design Decisions and Rationale:</h3>
