@@ -55,7 +55,7 @@
     }));
 
     let fetchedTrips = await d3
-      .csv("/bluebikes-traffic-2024-03.csv")
+      .csv(base + "/bluebikes-traffic-2024-03.csv")
       .then((trips) => {
         for (let trip of trips) {
           trip.started_at = new Date(trip.started_at);
