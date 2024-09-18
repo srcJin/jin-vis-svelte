@@ -1,53 +1,54 @@
 <script>
   import { page } from "$app/stores";
   import "../style.css";
+  import { base } from "$app/paths";
 
   let pages = [
-    { url: "/", title: "Home" },
+    { url: base + "/", title: "Home" },
     {
       title: "Projects",
       children: [
         { type: "divider", title: "6.C85 Course Projects" },
-        { type: "link", url: "/projects/mbta_upzone", title: "MBTA Upzone+" },
-        { type: "link", url: "/projects/police_misconduct", title: "Police Misconduct" },
-        { type: "link", url: "/projects/american_population", title: "The Death and Life of American Population" },
+        { type: "link", url: base + "/projects/mbta_upzone", title: "MBTA Upzone+" },
+        { type: "link", url: base + "/projects/police_misconduct", title: "Police Misconduct" },
+        { type: "link", url: base + "/projects/american_population", title: "The Death and Life of American Population" },
 
         { type: "divider", title: "Web Applications" },
-        { type: "link", url: "/projects/urban_mediators", title: "Urban Mediators" },
-        { type: "link", url: "/projects/cre8ors", title: "Cre8ors" },
-        { type: "link", url: "/projects/covid_map", title: "Covid Risk Level Map" },
-        { type: "link", url: "/projects/weehive", title: "WeeHive" },
-        // { type: "link", url: "/projects/from_sketch_to_design", title: "From Sketch to Design"},
+        { type: "link", url: base + "/projects/urban_mediators", title: "Urban Mediators" },
+        { type: "link", url: base + "/projects/cre8ors", title: "Cre8ors" },
+        { type: "link", url: base + "/projects/covid_map", title: "Covid Risk Level Map" },
+        { type: "link", url: base + "/projects/weehive", title: "WeeHive" },
+        // { type: "link", url: base + "/projects/from_sketch_to_design", title: "From Sketch to Design"},
 
         { type: "divider", title: "GIS Visualization" },
-        { type: "link", url: "/projects/silkroad_urbanism", title: "Silkroad Urbanism"},
-        { type: "link", url: "/projects/the_third_nature", title: "The Third Nature"},
-        { type: "link", url: "/projects/boston_land_value", title: "Boston Land Value"},
+        { type: "link", url: base + "/projects/silkroad_urbanism", title: "Silkroad Urbanism"},
+        { type: "link", url: base + "/projects/the_third_nature", title: "The Third Nature"},
+        { type: "link", url: base + "/projects/boston_land_value", title: "Boston Land Value"},
 
         { type: "divider", title: "Visualization for Business" },
-        { type: "link", url: "/projects/communicate_with_data", title: "Communicate with Data"},
+        { type: "link", url: base + "/projects/communicate_with_data", title: "Communicate with Data"},
       ],
     },
     {
       title: "Assignments",
       children: [
-        { type: "link", url: "/assignments/a2", title: "A2: Exploratory Analysis" },
-        { type: "link", url: "/assignments/a3", title: "A3: Visualization Design" },
-        { type: "link", url: "/assignments/a4", title: "A4: Persuasive/Deceptive" },
+        { type: "link", url: base + "/assignments/a2", title: "A2: Exploratory Analysis" },
+        { type: "link", url: base + "/assignments/a3", title: "A3: Visualization Design" },
+        { type: "link", url: base + "/assignments/a4", title: "A4: Persuasive/Deceptive" },
       ],
     },
     {
       title: "Labs",
       children: [
         { type: "link", url: "https://srcjin.github.io/vis_lab_0_3/", title: "Lab 0-3:Static Page" },
-        { type: "link", url: "/labs/lab5_svelte", title: "Lab 4-5: Svelte" },
-        { type: "link", url: "/labs/lab6_project_grids", title: "Lab 6: Project Grids" },
-        { type: "link", url: "/labs/lab7_commit_meta", title: "Lab 7: Commit Meta" },
-        { type: "link", url: "/labs/lab8_bikewatching", title: "Lab 8: Bikewatching" },
-        { type: "link", url: "/labs/lab9_storytelling", title: "Lab 9: Storytelling" },
+        { type: "link", url: base + "/labs/lab5_svelte", title: "Lab 4-5: Svelte" },
+        { type: "link", url: base + "/labs/lab6_project_grids", title: "Lab 6: Project Grids" },
+        { type: "link", url: base + "/labs/lab7_commit_meta", title: "Lab 7: Commit Meta" },
+        { type: "link", url: base + "/labs/lab8_bikewatching", title: "Lab 8: Bikewatching" },
+        { type: "link", url: base + "/labs/lab9_storytelling", title: "Lab 9: Storytelling" },
       ],
     },
-    { type: "link", url: "/about_me", title: "About Me" },
+    { type: "link", url: base + "/about_me", title: "About Me" },
     { type: "link", url: "https://gao-jin.com", title: "Full Portfolio" },
     { type: "link", url: "https://github.com/srcJin", title: "GitHub" },
   ];
