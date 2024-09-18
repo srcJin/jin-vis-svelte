@@ -1,4 +1,5 @@
 <script>
+  import { base } from "$app/paths";
   import * as d3 from "d3";
   import { onMount } from "svelte";
   import { computePosition, autoPlacement, offset } from "@floating-ui/dom";

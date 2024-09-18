@@ -1,4 +1,5 @@
 <script>
+  import { base } from "$app/paths";
     export let data = {};
     export let hLevel = 2;
     export let layout = "left"; // Default layout is "left"

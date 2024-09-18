@@ -6,7 +6,7 @@
     <h1>Communicate with Data</h1>
     <h2>Practice 1: Analyze and Redraw a Graph</h2>
     <h3>Original Graph</h3>
-    <img src="/images/projects/communicate_with_data/communicate_with_data1.jpg" alt="Communicate With Data Original Graph">
+    <img src= "{base}/images/projects/communicate_with_data/communicate_with_data1.jpg" alt="Communicate With Data Original Graph">
 
     <h3>Analysis</h3>
     <h4>What works well</h4>
@@ -35,11 +35,11 @@
     <p><strong>Bar chart integration with built-in error bars:</strong> Instead of showing the number of 1-day and 7-day changes, error bars represent minor differences.</p>
     <p><strong>Adjust sorting logic:</strong> Sort the data by fatality rate.</p>
 
-    <img src="/images/projects/communicate_with_data/communicate_with_data2.jpg" alt="Communicate With Data Revised Graph">
-    <img src="/images/projects/communicate_with_data/communicate_with_data3.jpg" alt="Communicate With Data Key Data Graph">
+    <img src= "{base}/images/projects/communicate_with_data/communicate_with_data2.jpg" alt="Communicate With Data Revised Graph">
+    <img src= "{base}/images/projects/communicate_with_data/communicate_with_data3.jpg" alt="Communicate With Data Key Data Graph">
 
     <h2>Practice 2: Redraw a Complex Commercial Graph</h2>
-    <img src="/images/projects/communicate_with_data/communicate_with_data4.jpg" alt="Communicate With Data Practice 2">
+    <img src= "{base}/images/projects/communicate_with_data/communicate_with_data4.jpg" alt="Communicate With Data Practice 2">
 
     <h3>Analysis</h3>
     <h4>What works well</h4>
@@ -69,12 +69,12 @@
             <p><strong>Pivot the chart by 90 degrees:</strong> Country names are long and should be readable in the current layout.</p>
         </div>
         <div class="image-content">
-            <img src="/images/projects/communicate_with_data/color_wheel.jpg" alt="Communicate With Data Color Wheel">
+            <img src= "{base}/images/projects/communicate_with_data/color_wheel.jpg" alt="Communicate With Data Color Wheel">
         </div>
     </div>
 
     <h3>Redrawed Graph</h3>
-    <img src="/images/projects/communicate_with_data/communicate_with_data5.jpg" alt="Communicate With Data Final Practice 2">
+    <img src= "{base}/images/projects/communicate_with_data/communicate_with_data5.jpg" alt="Communicate With Data Final Practice 2">
 </main>
 
 <style>

@@ -1,4 +1,5 @@
 <script>
+  import { base } from "$app/paths";
   import projects from "$lib/dummyprojects.json";
   import Project from "$lib/Project.svelte";
   import Pie from "$lib/Pie.svelte";

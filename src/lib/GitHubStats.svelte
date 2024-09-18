@@ -1,5 +1,6 @@
 <!-- src/components/GitHubStats.svelte -->
 <script>
+  import { base } from "$app/paths";
     // Props to receive username or other customizable data
     export let username = 'srcJin';
 

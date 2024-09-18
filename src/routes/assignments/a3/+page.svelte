@@ -59,7 +59,7 @@
         </p>
     
         <figure>
-            <img src="/images/a3/sketch1-2.jpg" alt="sketch 1" class="image-l" />
+            <img src= "{base}/images/a3/sketch1-2.jpg" alt="sketch 1" class="image-l" />
             <figcaption>
                 Sketch 1: A modified Sankey diagram to represent the population flow
             </figcaption>
@@ -72,7 +72,7 @@
         <ul>
             <li>Express Relationships: Using the style of Sankey diagrams, this sketch aims to show the three interconnected generations of the population and their relationships, in a simplified way.
         
-                <img src="/images/a3/sankey_reference.jpg" alt="sankey_reference" class="image-s"/>
+                <img src= "{base}/images/a3/sankey_reference.jpg" alt="sankey_reference" class="image-s"/>
                 <figcaption class="center-text">Sankey Reference</figcaption>
             </li>
             <li>Efficiency and simplicity: It is effective at depicting the flow of populations or resources between different states or groups. The division between the age groups is clear.</li>
@@ -80,7 +80,7 @@
         </ul>
         
         <figure>
-            <img src="/images/a3/sketch2-2.jpg" alt="sketch 2" class="image-l" />
+            <img src= "{base}/images/a3/sketch2-2.jpg" alt="sketch 2" class="image-l" />
             <figcaption>
               Sketch 2: A manga to show the dramatic path from the 1900s to the 2000s.
             </figcaption>
@@ -94,7 +94,7 @@
             <li>Instead of directly showing the data as a statistical result, this sketch aims to use narrative cartoons to show the changes in people's lifestyles and living environments through depictable figures: the change in dwelling styles, the break of gender discrimination, the adaptation of car transportation, and the rise of high-density cities. These changes indirectly reflect the actual amount of data but directly answer the question we proposed for this visualization.</li>
             <li>The cartoonized, story-based approach makes it easier for the audience to accept and become interested in reading in detail. The success of this style requires multiple layers of storytelling and uses a lot of detail on different scales. Once successful, it will maximize the expansion of the audience and spread the ideas more intuitively and broadly.
                 
-            <img src="/images/a3/sketch_2_reference.jpg" alt="reference" class="image-s"/>
+            <img src= "{base}/images/a3/sketch_2_reference.jpg" alt="reference" class="image-s"/>
             <figcaption class="center-text">Reference</figcaption>
             </li>
             <li>The drawback of this approach is that the cartoon format makes precise data difficult to read. It's more like a painting than a display of data. This kind of bias might lead the audience to overlook the associated data's accuracy. However, we can mitigate this issue through design, such as limiting the freedom of expression and incorporating chart-like elements into the overall image.</li>
@@ -102,7 +102,7 @@
         </ul>
         
         <figure>
-            <img src="/images/a3/sketch3-2.jpg" alt="sketch 3" class="image-l" />
+            <img src= "{base}/images/a3/sketch3-2.jpg" alt="sketch 3" class="image-l" />
             <figcaption>
               Sketch 3: The 20th Century Pinball Machine: a dynamic visualization for dramatic events on population change
             </figcaption>
@@ -113,7 +113,7 @@
         </h4>
 
         <p>Inspiration: Galton Board</p>
-        <img src="/images/a3/galton_board.jpg" alt="galton board" class="image-s"  />
+        <img src= "{base}/images/a3/galton_board.jpg" alt="galton board" class="image-s"  />
 
         <p>
             Galton Board, used to demonstrate binomial distribution in probability theory, shows a dynamic process of randomness. Inspired by this process, I have transformed this experience into a synesthetic form of data visualization. This approach is aimed at articulating the inherent randomness present in the fluctuations of population over the centuries.
@@ -137,7 +137,7 @@
         <h2>Phase Two: Final Design</h2>
     
         <figure>
-            <img src="/images/a3/final-2.png" alt="Final Design" />
+            <img src= "{base}/images/a3/final-2.png" alt="Final Design" />
             <figcaption>
                 The 20th Century Pinball Machine: a Visualization for Dramatic Events on Population Change
             </figcaption>
@@ -151,12 +151,12 @@
         <h3>Refine and reasoning the problem from the dataset</h3>
     
         <figure>
-            <img src="/images/a3/intermediate2.png" alt="Intermediate Plot 2" class="image-s" />
+            <img src= "{base}/images/a3/intermediate2.png" alt="Intermediate Plot 2" class="image-s" />
             <figcaption>
                 Intermediate Plot 2: Baby Boom
             </figcaption>
 
-            <img src="/images/a3/intermediate3.png" alt="Intermediate Plot 3" class="image-s" />
+            <img src= "{base}/images/a3/intermediate3.png" alt="Intermediate Plot 3" class="image-s" />
             <figcaption>
                 Intermediate Plot 3: Fertility Rate
             </figcaption>
@@ -167,7 +167,7 @@
         </p>
     
         <figure>
-            <img src="/images/a3/intermediate4.png" alt="Intermediate Plot 4" class="image-l" />
+            <img src= "{base}/images/a3/intermediate4.png" alt="Intermediate Plot 4" class="image-l" />
             <figcaption>
                 Intermediate Plot 4: Mortality Rate
             </figcaption>
@@ -180,15 +180,15 @@
         <h3>Exploratory plottings to find the proper proportion of visualization</h3>
     
         <figure>
-            <img src="/images/a3/intermediate1.png" alt="Intermediate Drawing 5" class="image-l" />
+            <img src= "{base}/images/a3/intermediate1.png" alt="Intermediate Drawing 5" class="image-l" />
             <figcaption>
                 Intermediate Drawing 5: Population by age group
             </figcaption>
-            <img src="/images/a3/intermediate5.png" alt="Intermediate Drawing 6" class="image-m" />
+            <img src= "{base}/images/a3/intermediate5.png" alt="Intermediate Drawing 6" class="image-m" />
             <figcaption>
                 Intermediate Drawing 6: Population change by age groups
             </figcaption>
-            <img src="/images/a3/population_chart.png" alt="Intermediate Drawing 7" class="image-s" />
+            <img src= "{base}/images/a3/population_chart.png" alt="Intermediate Drawing 7" class="image-s" />
             <figcaption>
                 Intermediate Drawing 7: Population change by 10-year age groups
             </figcaption>
@@ -208,12 +208,12 @@
             Dark gray dots indicate deaths, with each dot representing 10,000 deaths. Light gray dots represent estimated deaths.
         </li>
 
-        <img src="/images/a3/design1.png" alt="design1" class="image-m" />
+        <img src= "{base}/images/a3/design1.png" alt="design1" class="image-m" />
 
 
         <p>To indicate population flow, I draw shade on the background, follow a 50-year interval. For example, the population that is 0 at 1900 will be 50 at 1950, and the curvy background will guide the reader towards the corresponding data point. </p>
 
-        <img src="/images/a3/design2.png" alt="design2" class="image-m" />
+        <img src= "{base}/images/a3/design2.png" alt="design2" class="image-m" />
 
 
         <p>Historical events such as wars and the baby boom are noted on the left side along with the timestamps, they also correspond to the "population catcher" inside the Galton board to represent partial of the population is dead due to such event.</p>
@@ -222,11 +222,11 @@
             When representing death, I encountered a problem. Compared with the total population, the death number can't be directly represented by dots. Otherwise there will only be 1-2 dots on each event. So I switched to introduce dark grey rectangle to represent death in another scale. The death data divided by gender is hard to find, so I generalized it to homosextual.
         </p>
     
-        <img src="/images/a3/problem1.png" alt="design2" class="image-m" />
+        <img src= "{base}/images/a3/problem1.png" alt="design2" class="image-m" />
         <figcaption class="center-text">Death representation before adjustment</figcaption>
 
 
-        <img src="/images/a3/problem2.png" alt="design2" class="image-l" />
+        <img src= "{base}/images/a3/problem2.png" alt="design2" class="image-l" />
         <figcaption class="center-text">Death representation after adjustment</figcaption>
 
     </section>
@@ -259,7 +259,7 @@
   >
 
     <h4>Add 1950 Population Data</h4>
-    <img src="/images/a3/data1.png" alt="Data processing 1" class="image-l"  />
+    <img src= "{base}/images/a3/data1.png" alt="Data processing 1" class="image-l"  />
     <p>R code:</p>
     <!-- <pre><code>
         

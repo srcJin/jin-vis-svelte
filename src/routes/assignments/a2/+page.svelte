@@ -85,7 +85,7 @@
         <h3>Geographical Information</h3>
 
         <figure>
-            <img src="/images/a2/geographic.png" alt="geographic boudaries" class="image-s"/>
+            <img src= "{base}/images/a2/geographic.png" alt="geographic boudaries" class="image-s"/>
             <figcaption>Overview of Boston's 101 Municipalities</figcaption>
             <description>
               The dataset shows us the regional extent of the 101 municipalities
@@ -98,7 +98,7 @@
           <figure>
             <figcaption>Concentric Circles Theory Application in Boston</figcaption>
                 <img class="image-l"
-                src="/images/a2/distance_to_boston_center.png"
+                src= "{base}/images/a2/distance_to_boston_center.png"
                 alt="distance_to_boston_center"
                 />
 
@@ -147,7 +147,7 @@
         <h3>Demographic</h3>
 
         <figure>
-            <img class="image-m" src="/images/a2/population_pyramid.png" alt="populationpyramid" />
+            <img class="image-m" src= "{base}/images/a2/population_pyramid.png" alt="populationpyramid" />
             <figcaption>Spindle-shaped Population Distribution in Boston</figcaption>
             <description>
               Looking at the regional demographic data we can see that the Boston
@@ -175,7 +175,7 @@
 
           <figure>
             <img class="image-l"
-              src="/images/a2/demographic_distribution.png"
+              src= "{base}/images/a2/demographic_distribution.png"
               alt="demographic distribution"
             />
             <figcaption>Racial Distribution</figcaption>
@@ -191,7 +191,7 @@
 
           <figure>
           <img class="image-l"
-          src="/images/a2/minorities_population.png"
+          src= "{base}/images/a2/minorities_population.png"
           alt="minorities population"
         />
         <figcaption>Diverse Minority Populations in Boston</figcaption>
@@ -205,7 +205,7 @@
 
         <figure>
             <img class="image-m"
-              src="/images/a2/single_family_rate.png"
+              src= "{base}/images/a2/single_family_rate.png"
               alt="single_family_rate"
             />
             <figcaption>Single Family Rate</figcaption>
@@ -216,7 +216,7 @@
 
         <figure>
             <img class="image-l"
-              src="/images/a2/household_distribution.png"
+              src= "{base}/images/a2/household_distribution.png"
               alt="household distribution.png"
             />
             <figcaption>Household Distribution</figcaption>
@@ -243,7 +243,7 @@
           </figure>
 
             <figure>
-              <img class="image-l" src="/images/a2/single_family_percentage.png" alt="" />
+              <img class="image-l" src= "{base}/images/a2/single_family_percentage.png" alt="" />
               <figcaption>
                 Mapping of Single-Family Percentage
               </figcaption>
@@ -256,7 +256,7 @@
             </figure>
 
             <figure>
-                <img class="image-l" src="/images/a2/only_single_family_zoning.png" alt="only single family zoning" />
+                <img class="image-l" src= "{base}/images/a2/only_single_family_zoning.png" alt="only single family zoning" />
                 <figcaption>
                   Single Family Only Zoning Distribution
                 </figcaption>
@@ -271,7 +271,7 @@
     
         <h3>Income</h3>
         <figure>
-            <img class="image-l" src="/images/a2/household_income_distribution.png" alt="household_income_distribution" />
+            <img class="image-l" src= "{base}/images/a2/household_income_distribution.png" alt="household_income_distribution" />
             <figcaption>
                 Household Income Distribution
             </figcaption>
@@ -284,7 +284,7 @@
           </figure>
 
           <figure>
-            <img class="image-m" src="/images/a2/predominate_class.png" alt="Predominate income group vs zoning policies" />
+            <img class="image-m" src= "{base}/images/a2/predominate_class.png" alt="Predominate income group vs zoning policies" />
             <figcaption>
                Predominate income group vs zoning policies
             </figcaption>
@@ -294,7 +294,7 @@
           </figure>
 
           <figure>
-            <img class="image-l" src="/images/a2/predominate_class_mapping.png" alt="Predominate income group mapping" />
+            <img class="image-l" src= "{base}/images/a2/predominate_class_mapping.png" alt="Predominate income group mapping" />
             <figcaption>
                Predominate income group mapping
             </figcaption>
@@ -304,7 +304,7 @@
           </figure>
 
           <figure>
-            <img class="image-l" src="/images/a2/average_household_income.png" alt="average_household_income" />
+            <img class="image-l" src= "{base}/images/a2/average_household_income.png" alt="average_household_income" />
             <figcaption>
               Average househode income distribution
             </figcaption>
@@ -315,7 +315,7 @@
 
 
           <figure>
-            <img class="image-l" src="/images/a2/low_income_household.png" alt="low income household" />
+            <img class="image-l" src= "{base}/images/a2/low_income_household.png" alt="low income household" />
             <figcaption>
               Extra Low-Income Household Distributions
             </figcaption>
@@ -338,7 +338,7 @@
         </p>
         <figure>
         <img
-          src="/images/a2/circle_theory.png"
+          src= "{base}/images/a2/circle_theory.png"
           alt="Concentric circles theory"
           class="image-s"
         />
@@ -355,7 +355,7 @@
 
         <figure>
           <img
-            src="/images/a2/SF_Zoning_Map.png"
+            src= "{base}/images/a2/SF_Zoning_Map.png"
             alt="household_income_distribution"
             class="image-s"
           />
@@ -398,26 +398,26 @@
         <p>Partially Yes! Every category has meaningful discription and data type.However, we couldn't find the unit used in many rows.
         </p>
 
-        <img src="/images/a2/missing_data.png" alt="missing data" class="image-l" />
+        <img src= "{base}/images/a2/missing_data.png" alt="missing data" class="image-l" />
         <figcaption class="center-text">0 or missing data</figcaption>
         
         <h4>Is there any unrealistic data?</h4>
         <p>Population scale: Some of the population data is very low. And the metadata didn't specify the population unit. From Google, we can find the current population of Esses, MA is 3504. So, the pop column should be in thousand units.
         </p>
         
-        <img src="/images/a2/population_scale.png" alt="population scale" class="image-s" />
+        <img src= "{base}/images/a2/population_scale.png" alt="population scale" class="image-s" />
         <figcaption class="center-text">population scale</figcaption>
         
         <p>Single-family zoning proportion in many municipalities is 0, including Boston. Meanwhile, some of them has extremely high number, even 100%. They may lead to unrealistic analysis, so I wouldn't recommend doing analysis based on such data. </p>
         <p>
             In the current data, every municipal is housing zoning, which may be wrong.
         </p>
-        <img src="/images/a2/extreme_data.png" alt="extreme data" class="image-m" />
+        <img src= "{base}/images/a2/extreme_data.png" alt="extreme data" class="image-m" />
         <figcaption class="center-text">extreme data</figcaption>
         
         <h4>Is there redundant data?</h4>
         <p>Yes. Although has significant scale differences, I couldn't find differences between the geometry between ma_municipalities.geojson and housing_sf_other_w_census.geojson. We can just use one of them in mapping.</p>
-        <img src="/images/a2/gis_overlap.png" alt="gis overlap" class="image-s" />
+        <img src= "{base}/images/a2/gis_overlap.png" alt="gis overlap" class="image-s" />
         <figcaption class="center-text">GIS Data Overlap</figcaption>
         
         <h4> Is the scale of data sufficient?</h4>
@@ -434,7 +434,7 @@
 
         <h4>Merge metadata: provide easier alignment and better efficiency.</h4>
 
-        <img src="/images/a2/merge_metadata.png" alt="merged_metadata.png" class="image-s"/>
+        <img src= "{base}/images/a2/merge_metadata.png" alt="merged_metadata.png" class="image-s"/>
         <figcaption class="center-text">Merged Metadata</figcaption>
 
         <h4>Geographical Information Processing:</h4>
@@ -445,7 +445,7 @@
           </li>
           <li>Perform further analysis using Excel and Tableau</li>
         </p>
-        <img src="/images/a2/gis_processing.png" alt="gis processing" class="image-s"/>
+        <img src= "{base}/images/a2/gis_processing.png" alt="gis processing" class="image-s"/>
         <figcaption class="center-text">GIS Processing</figcaption>
         
         <h4>Calculate Distance to Boston:</h4>
@@ -459,7 +459,7 @@
             distances
           </li>
         </p>
-        <img src="/images/a2/calculate_distance.png" alt="calculate distance" class="image-s"/>
+        <img src= "{base}/images/a2/calculate_distance.png" alt="calculate distance" class="image-s"/>
         <figcaption class="center-text">Calculate Distance</figcaption>
 
         <h4>Calculate Average Income:</h4>

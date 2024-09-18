@@ -60,7 +60,7 @@
     <p> These are background information extend the given data to better </p>
 
     <figure>
-        <img src="/images/a4/new_york_police_hierarchy.png" alt="The Hierarchy of the New York Police System"
+        <img src= "{base}/images/a4/new_york_police_hierarchy.png" alt="The Hierarchy of the New York Police System"
             class="image-xxl" />
         <figcaption>The Hierarchy of the New York Police System.</figcaption>
     </figure>
@@ -77,7 +77,7 @@
 
     <!-- New York Precincts Mapping -->
     <figure>
-        <img src="/images/a4/GIS.png" alt="New York Precincts Mapping" class="image-m" />
+        <img src= "{base}/images/a4/GIS.png" alt="New York Precincts Mapping" class="image-m" />
         <figcaption>New York Precincts Mapping</figcaption>
     </figure>
     <p>
@@ -100,7 +100,7 @@
     </p>
 
     <figure>
-        <img src="/images/a4/case_study_1.png" alt="Case Study 1: Analysis of Complaints in Major US Cities"
+        <img src= "{base}/images/a4/case_study_1.png" alt="Case Study 1: Analysis of Complaints in Major US Cities"
             class="image-m" />
         <figcaption>
             <strong>Case Study 1:</strong> Analysis of Complaints in Major US
@@ -120,7 +120,7 @@
     </ref>
 
     <figure>
-        <img src="/images/a4/case_study_2.jpg" alt="Case Study 2: Average Time an NYPD Complaint Remains Open"
+        <img src= "{base}/images/a4/case_study_2.jpg" alt="Case Study 2: Average Time an NYPD Complaint Remains Open"
             class="image-m" />
         <figcaption>
             <strong>Case Study 2:</strong> Average Time an NYPD Complaint Remains
@@ -141,7 +141,7 @@
 
     <!-- Additional Case Studies (Assuming similar to Case Study 2) -->
     <figure>
-        <img src="/images/a4/case_study_3.jpg" alt="Further Analysis on NYPD Complaints" class="image-m" />
+        <img src= "{base}/images/a4/case_study_3.jpg" alt="Further Analysis on NYPD Complaints" class="image-m" />
         <figcaption>
             Further examinations reveal consistent patterns in the average time an
             NYPD complaint remains open, underscoring systemic issues in complaint
@@ -156,7 +156,7 @@
 
     <section>
         <figure>
-            <img src="/images/a4/police_misconduct.gif" alt="" />
+            <img src= "{base}/images/a4/police_misconduct.gif" alt="" />
             <figcaption>
                 The Police Misconduct is a Collective Practice Influenced by Their Surroundings : a Drawing
                 Highlighting Dinstive Precinct Social Networks
@@ -184,7 +184,7 @@
             </li>
 
             <figure>
-                <img src="/images/a4/persuasive_detail.png" alt="" class="image-m" />
+                <img src= "{base}/images/a4/persuasive_detail.png" alt="" class="image-m" />
                 <figcaption>
                     An extract of a typical social network in a precinct to help explain this drawing. It shows how
                     the police officers are organized and their inner connections between people. Each dot represent
@@ -213,7 +213,7 @@
         <h2>Deceptive Drawing</h2>
 
         <figure>
-            <img src="/images/a4/deceptive2.png" alt="" />
+            <img src= "{base}/images/a4/deceptive2.png" alt="" />
             <figcaption>
                 The Police Misconduct is Only a Small Scale Individual Practice, Not Directly Influenced by
                 Their Work Social Networks in Particular Precincts
@@ -257,7 +257,7 @@
                 vigilance.
             </li>
             <figure>
-                <img src="/images/a4/deceptive2-ref.png" alt="" class="image-l" />
+                <img src= "{base}/images/a4/deceptive2-ref.png" alt="" class="image-l" />
                 <figcaption>
                     Reference chart for using absolute value as y axis
                 </figcaption>
@@ -275,7 +275,7 @@
             <h3>Step1: extract core data related to social network and police's information</h3>
 
     <figure>
-        <img src="/images/a4/processing1.png" alt="" class="image-l" />
+        <img src= "{base}/images/a4/processing1.png" alt="" class="image-l" />
         <figcaption>
             Step1: extract core data related to social network and police's information
         </figcaption>
@@ -344,7 +344,7 @@
         </code></pre> -->
 
     <figure>
-        <img src="/images/a4/processing2.png" alt="" class="image-xxl" />
+        <img src= "{base}/images/a4/processing2.png" alt="" class="image-xxl" />
         <figcaption>
             Step1 Result: pivoted data
         </figcaption>
@@ -352,7 +352,7 @@
             <h3>Step2: ranking and grouping according to its prescient number and rank incident.</h3>
 
     <figure>
-        <img src="/images/a4/processing3.png" alt="" class="image-m" />
+        <img src= "{base}/images/a4/processing3.png" alt="" class="image-m" />
         <figcaption>
             Step2: ranking and grouping according to its prescient number and rank indecent.
         </figcaption>
@@ -363,7 +363,7 @@
         <h3>
             Step3: Small scale test for disjoint graph visualization</h3>
     <figure>
-        <img src="/images/a4/processing4.png" alt="" class="image-s" />
+        <img src= "{base}/images/a4/processing4.png" alt="" class="image-s" />
         <figcaption>
             Step3 Result</figcaption>
     </figure>
@@ -399,7 +399,7 @@
     <p>We then write a script to transform the csv file to our desired json format, and create the link using
         their connection hierarchy</p>
     <figure>
-        <img src="/images/a4/processing6.png" alt="" class="image-m" />
+        <img src= "{base}/images/a4/processing6.png" alt="" class="image-m" />
         <figcaption>
             Our first attempt on visualization is ok but not optimal, because we indluded too many unnecessary
             data and connection. We will then change the logic following a strict hierarchy and remove unnessary
@@ -546,7 +546,7 @@
 
     </code></pre> -->
     <figure>
-        <img src="/images/a4/pivoted.png" alt="" class="image-l" />
+        <img src= "{base}/images/a4/pivoted.png" alt="" class="image-l" />
         <figcaption>
             Pivoted data with statistics.
         </figcaption>

@@ -1,4 +1,5 @@
 <script>
+  import { base } from "$app/paths";
     import HeaderProject from "$lib/HeaderProject.svelte";
     import projects from "$lib/full_projects.json";
   

@@ -1,4 +1,5 @@
 <script>
+  import { base } from "$app/paths";
     export let data = {}; // This defines the prop that will be passed from the parent 
     export let hLevel = 2;
   </script>

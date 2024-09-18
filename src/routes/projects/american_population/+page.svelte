@@ -10,4 +10,4 @@
     </h2>
 
 
-    <img src="/images/a3/final-2.png" alt="American Population" style="width:100%;">
+    <img src= "{base}/images/a3/final-2.png" alt="American Population" style="width:100%;">

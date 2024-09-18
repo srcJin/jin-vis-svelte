@@ -18,17 +18,17 @@
 
     <div class="gallery">
         <h2 class="subtitle">Title Screen</h2>
-        <img src="/images/projects/cre8ors/cre8ors1.png" alt="Title Screen">
+        <img src= "{base}/images/projects/cre8ors/cre8ors1.png" alt="Title Screen">
         <h2 class="subtitle">Mindmap List</h2>
-        <img src="/images/projects/cre8ors/cre8ors2.png" alt="Mindmap List">
+        <img src= "{base}/images/projects/cre8ors/cre8ors2.png" alt="Mindmap List">
         <h2 class="subtitle">Mindmap Screen</h2>
-        <img src="/images/projects/cre8ors/cre8ors3.png" alt="Mindmap Screen">
+        <img src= "{base}/images/projects/cre8ors/cre8ors3.png" alt="Mindmap Screen">
         <h2 class="subtitle">Card Deck</h2>
-        <img src="/images/projects/cre8ors/cre8ors4.png" alt="Card Deck">
+        <img src= "{base}/images/projects/cre8ors/cre8ors4.png" alt="Card Deck">
         <h2 class="subtitle">Add Card</h2>
-        <img src="/images/projects/cre8ors/cre8ors5.png" alt="Add Card">
+        <img src= "{base}/images/projects/cre8ors/cre8ors5.png" alt="Add Card">
         <h2 class="subtitle">Search and Insert Card</h2>
-        <img src="/images/projects/cre8ors/cre8ors6.png" alt="Search and Insert Card">
+        <img src= "{base}/images/projects/cre8ors/cre8ors6.png" alt="Search and Insert Card">
     </div>
 
 

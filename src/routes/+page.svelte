@@ -1,6 +1,6 @@
 <script>
-  import ProjectGallery from "../lib/ProjectGallery.svelte";
   import { base } from "$app/paths";
+  import ProjectGallery from "../lib/ProjectGallery.svelte";
 </script>
 
 <svelte:head>

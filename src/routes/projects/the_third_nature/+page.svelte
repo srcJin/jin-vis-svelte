@@ -17,14 +17,14 @@
     </p>
 
     <h3>Modern Hydropower Mapping in China</h3>
-    <img src="/images/projects/the_third_nature/the_third_nature_1.png" alt="Modern Hydropower Mapping in China">
+    <img src= "{base}/images/projects/the_third_nature/the_third_nature_1.png" alt="Modern Hydropower Mapping in China">
 
     <h3>National Dam Construction Statistics</h3>
     <p>This drawing provides detailed statistics on the growth of hydropower capacity in China. The red bars show the number of failed dams each year.</p>
-    <img src="/images/projects/the_third_nature/the_third_nature_2.png" alt="National Dam Construction Statistics">
+    <img src= "{base}/images/projects/the_third_nature/the_third_nature_2.png" alt="National Dam Construction Statistics">
 
     <h3>One Site, Two Floods</h3>
-    <img src="/images/projects/the_third_nature/the_third_nature_3.png" alt="One Site, Two Floods">
+    <img src= "{base}/images/projects/the_third_nature/the_third_nature_3.png" alt="One Site, Two Floods">
     <p>Left: mapping of “75·8” Banqiao Dam Failure, 1975/08/05- 08/30</p>
     <p>Right: mapping of "21·7" Heavy Rainfall and Flood, 2021/07/21-07/31</p>
 </main>

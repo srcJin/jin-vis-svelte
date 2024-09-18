@@ -3,6 +3,7 @@
 </svelte:head>
 
 <script>
+  import { base } from "$app/paths";
 import GitHubStats from '$lib/GitHubStats.svelte';
 </script>
 
@@ -12,7 +13,7 @@ import GitHubStats from '$lib/GitHubStats.svelte';
         <GitHubStats username="srcJin" />
         <p>Software Developer | Web Designer</p>
     </header>
-    <img src="/images/tim.jpg" alt="John Doe" style="width:100px;height:100px;">
+    <img src= "{base}/images/tim.jpg" alt="John Doe" style="width:100px;height:100px;">
     <p>Email: <a href="mailto:john.doe@example.com">john.doe@example.com</a></p>
 </section>
 

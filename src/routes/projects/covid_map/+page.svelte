@@ -1,4 +1,5 @@
 <script>
+  import { base } from "$app/paths";
   // No script needed for now, but you can add any JavaScript here if needed later.
 </script>
 
@@ -27,11 +28,11 @@
 
 
   <!-- coviddemo.gif -->
-    <img src="/images/projects/covid_map/coviddemo.gif" alt="Covid Risk Level Map" />
+    <img src= "{base}/images/projects/covid_map/coviddemo.gif" alt="Covid Risk Level Map" />
 
   <h2>UX/UI Design</h2>
   <h3>UI Mockup</h3>
-  <img src="/images/projects/covid_map/Draft_JG_01.png" alt="UI Mockup" />
+  <img src= "{base}/images/projects/covid_map/Draft_JG_01.png" alt="UI Mockup" />
 
   <p>
     The main theme color for this web page is red, because I want people to
@@ -53,8 +54,8 @@
   <h2>Features</h2>
 
   <h3>Navigation Bar</h3>
-  <img src="/images/projects/covid_map/Untitled.png" alt="Navigation Bar">
-  <img src="/images/projects/covid_map/Untitled_1.png" alt="Responsive Navigation Bar">
+  <img src= "{base}/images/projects/covid_map/Untitled.png" alt="Navigation Bar">
+  <img src= "{base}/images/projects/covid_map/Untitled_1.png" alt="Responsive Navigation Bar">
   <ul>
       <li>Site icon and favicon</li>
       <li>Mobile responsive: Auto-hide the title and collapse to a hamburger menu button</li>
@@ -64,7 +65,7 @@
   </ul>
 
   <h3>Header Carousel</h3>
-  <img src="/images/projects/covid_map/1.png" alt="Header Carousel">
+  <img src= "{base}/images/projects/covid_map/1.png" alt="Header Carousel">
   <ul>
       <li>Carousel between images</li>
       <li>Overlay texts with a button</li>
@@ -73,10 +74,10 @@
 
   <h3>Map</h3>
   <div class="gallery">
-    <img src="/images/projects/covid_map/2.png" alt="Interactive Map">
-    <img src="/images/projects/covid_map/Untitled_2.png" alt="Map Controls">
-    <img src="/images/projects/covid_map/Untitled_3.png" alt="Map Zoom">
-    <img src="/images/projects/covid_map/Untitled_4.png" alt="Detailed Risk Point Info">
+    <img src= "{base}/images/projects/covid_map/2.png" alt="Interactive Map">
+    <img src= "{base}/images/projects/covid_map/Untitled_2.png" alt="Map Controls">
+    <img src= "{base}/images/projects/covid_map/Untitled_3.png" alt="Map Zoom">
+    <img src= "{base}/images/projects/covid_map/Untitled_4.png" alt="Detailed Risk Point Info">
 </div>
   <ul>
       <li>A slider bar to select a date and display the date selected</li>
@@ -93,7 +94,7 @@
   </ul>
 
   <h3>Statistic Charts</h3>
-  <img src="/images/projects/covid_map/3.png" alt="Statistic Charts">
+  <img src= "{base}/images/projects/covid_map/3.png" alt="Statistic Charts">
   <ul>
       <li>Display three types of data in three synchronized charts: the amount of risk areas, the risk areas of key provinces, and the infection cases numbers</li>
       <li>Brush to specify a range of date</li>
@@ -102,13 +103,13 @@
   </ul>
 
   <h3>Info Session</h3>
-  <img src="/images/projects/covid_map/4.png" alt="Information Session">
+  <img src= "{base}/images/projects/covid_map/4.png" alt="Information Session">
   <ul>
       <li>Mobile responsive Bootstrap cards</li>
   </ul>
 
   <h3>Timeline</h3>
-  <img src="/images/projects/covid_map/5.png" alt="Timeline">
+  <img src= "{base}/images/projects/covid_map/5.png" alt="Timeline">
   <ul>
       <li>Mobile responsive layout using CSS media query</li>
       <li>Display the key events throughout the three-year journey with corresponding pictures</li>

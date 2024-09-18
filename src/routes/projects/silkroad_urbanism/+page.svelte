@@ -24,12 +24,12 @@
     international geopolitical cooperation.
   </p>
   <img
-    src="/images/projects/silkroad_urbanism/SilkroadUrbanism0.jpg"
+    src= "{base}/images/projects/silkroad_urbanism/SilkroadUrbanism0.jpg"
     alt="Silkroad Urbanism Image 0"
   />
 
   <img
-  src="/images/projects/silkroad_urbanism/SilkroadUrbanism9.jpg"
+  src= "{base}/images/projects/silkroad_urbanism/SilkroadUrbanism9.jpg"
   alt="Silkroad Urbanism Image 9"
 />
   <h4>Istanbul Major Developments under Belt and Road Initiative</h4>
@@ -43,7 +43,7 @@
   </p>
 
   <img
-  src="/images/projects/silkroad_urbanism/SilkroadUrbanism14.jpg"
+  src= "{base}/images/projects/silkroad_urbanism/SilkroadUrbanism14.jpg"
   alt="Silkroad Urbanism Image 14"
 />
   <h4>World City Connected by the Aerial Silk Road</h4>

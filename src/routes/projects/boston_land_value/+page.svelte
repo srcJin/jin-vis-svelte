@@ -24,18 +24,18 @@
   </p>
 
   <h2>Methodology</h2>
-  <img src="/images/projects/boston_land_value/value1.jpg" alt="Methodology" />
+  <img src= "{base}/images/projects/boston_land_value/value1.jpg" alt="Methodology" />
   <h2>Land Value Mapping</h2>
 
   <img
-    src="/images/projects/boston_land_value/value2.jpg"
+    src= "{base}/images/projects/boston_land_value/value2.jpg"
     alt="Land Value Mapping"
   />
 
   <h2>Urban Form Analysis</h2>
 
   <img
-    src="/images/projects/boston_land_value/value3.jpg"
+    src= "{base}/images/projects/boston_land_value/value3.jpg"
     alt="Urban Form Analysis"
   />
 

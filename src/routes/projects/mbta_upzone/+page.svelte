@@ -40,7 +40,7 @@
             </p>
 
         <div class="image-full">
-            <img src="/images/projects/mbta_upzone/image1.png" alt="Placeholder for Fig 1" />
+            <img src= "{base}/images/projects/mbta_upzone/image1.png" alt="Placeholder for Fig 1" />
 
     </div>
 
@@ -52,7 +52,7 @@
             </p>
         </div>
         <div class="image-right">
-            <img src="/images/projects/mbta_upzone/image10.png" alt="Placeholder for About MBTA Communities ACT" />
+            <img src= "{base}/images/projects/mbta_upzone/image10.png" alt="Placeholder for About MBTA Communities ACT" />
         </div>
     </div>
 
@@ -80,7 +80,7 @@
             </p>
         </div>
         <div class="image-right">
-            <img src="/images/projects/mbta_upzone/image00.png" alt="Placeholder for Scrolly-Telling Intro Page" />
+            <img src= "{base}/images/projects/mbta_upzone/image00.png" alt="Placeholder for Scrolly-Telling Intro Page" />
         </div>
     </div>
 
@@ -92,7 +92,7 @@
             </p>
         </div>
         <div class="image-right">
-            <img src="/images/projects/mbta_upzone/image2.png" alt="Placeholder for Fig 2" />
+            <img src= "{base}/images/projects/mbta_upzone/image2.png" alt="Placeholder for Fig 2" />
 
         </div>
     </div>
@@ -105,7 +105,7 @@
             </p>
         </div>
         <div class="image-right">
-            <img src="/images/projects/mbta_upzone/image3.png" alt="Placeholder for Fig 3" />
+            <img src= "{base}/images/projects/mbta_upzone/image3.png" alt="Placeholder for Fig 3" />
 
         </div>
     </div>
@@ -118,7 +118,7 @@
             </p>
         </div>
         <div class="image-right">
-            <img src="/images/projects/mbta_upzone/image4.png" alt="Placeholder for Fig 4" />
+            <img src= "{base}/images/projects/mbta_upzone/image4.png" alt="Placeholder for Fig 4" />
 
         </div>
     </div>
@@ -131,7 +131,7 @@
             </p>
         </div>
         <div class="image-right">
-            <img src="/images/projects/mbta_upzone/image5.png" alt="Placeholder for Fig 5" />
+            <img src= "{base}/images/projects/mbta_upzone/image5.png" alt="Placeholder for Fig 5" />
 
         </div>
     </div>
@@ -155,7 +155,7 @@
             </p>
         </div>
         <div class="image-right">
-            <img src="/images/projects/mbta_upzone/image6.png" alt="Placeholder for Fig 6" />
+            <img src= "{base}/images/projects/mbta_upzone/image6.png" alt="Placeholder for Fig 6" />
         </div>
     </div>
 
@@ -166,7 +166,7 @@
             </p>
         </div>
         <div class="image-right">
-            <img src="/images/projects/mbta_upzone/image7.png" alt="Placeholder for Fig 7" />
+            <img src= "{base}/images/projects/mbta_upzone/image7.png" alt="Placeholder for Fig 7" />
         </div>
     </div>
 
@@ -187,7 +187,7 @@
             </p>
         </div>
         <div class="image-right">
-            <img src="/images/projects/mbta_upzone/image8.png" alt="Placeholder for Density Visualizer" />
+            <img src= "{base}/images/projects/mbta_upzone/image8.png" alt="Placeholder for Density Visualizer" />
         </div>
     </div>
 

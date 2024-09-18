@@ -10,7 +10,7 @@
 
   <img
     class="img-small"
-    src="/images/projects/urban_mediators/urban_mediators1.jpg"
+    src= "{base}/images/projects/urban_mediators/urban_mediators1.jpg"
     alt="Urban Mediators Game Visual"
   />
 
@@ -23,7 +23,7 @@
   </p>
 
   <img
-    src="/images/projects/urban_mediators/urban_mediators.gif"
+    src= "{base}/images/projects/urban_mediators/urban_mediators.gif"
     alt="Urban Mediators Game Visual"
   />
 
@@ -37,7 +37,7 @@
 
   <img
     class="img-small"
-    src="/images/projects/urban_mediators/urban_mediators2.png"
+    src= "{base}/images/projects/urban_mediators/urban_mediators2.png"
     alt="Urban Mediators Game Visual"
   />
 
@@ -49,7 +49,7 @@
 
     <img
       class="img-small"
-      src="/images/projects/urban_mediators/urban_mediators10.png"
+      src= "{base}/images/projects/urban_mediators/urban_mediators10.png"
       alt="Urban Mediators Game Visual"
     />
 
@@ -60,7 +60,7 @@
     </li>
 
     <img
-      src="/images/projects/urban_mediators/urban_mediators3.png"
+      src= "{base}/images/projects/urban_mediators/urban_mediators3.png"
       alt="Urban Mediators Game Visual"
     />
 
@@ -83,7 +83,7 @@
   <h2>Setup and Gameplay</h2>
 
   <img
-    src="/images/projects/urban_mediators/urban_mediators5.png"
+    src= "{base}/images/projects/urban_mediators/urban_mediators5.png"
     alt="Urban Mediators Game Visual"
   />
 
@@ -105,7 +105,7 @@
     </li>
 
     <img
-    src="/images/projects/urban_mediators/urban_mediators4.png"
+    src= "{base}/images/projects/urban_mediators/urban_mediators4.png"
     alt="Urban Mediators Game Visual"
   />
 
@@ -118,7 +118,7 @@
     </li>
     <img
     class="img-small"
-    src="/images/projects/urban_mediators/urban_mediators6.png"
+    src= "{base}/images/projects/urban_mediators/urban_mediators6.png"
     alt="Urban Mediators Game Visual"
   />
 

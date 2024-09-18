@@ -1,7 +1,7 @@
 <script>
+  import { base } from "$app/paths";
   import { page } from "$app/stores";
   import "../style.css";
-  import { base } from "$app/paths";
 
   let pages = [
     { url: base + "/", title: "Home" },

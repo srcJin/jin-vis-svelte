@@ -11,6 +11,7 @@
 	</head>
 	<!-- Step 1.6: Preventing FOUC  -->
 	<script>
+  import { base } from "$app/paths";
 		let root = document.documentElement;
 		let colorScheme = localStorage.colorScheme ?? "light dark";
 		root.style.setProperty("color-scheme", colorScheme);

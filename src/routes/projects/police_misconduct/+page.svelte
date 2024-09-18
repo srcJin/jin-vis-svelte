@@ -1,4 +1,5 @@
 <script>
+  import { base } from "$app/paths";
   import * as d3 from "d3";
   // import data from "./example_data.js";
   //   import data from "/a4_data_small.js";
