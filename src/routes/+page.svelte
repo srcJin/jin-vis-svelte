@@ -17,7 +17,7 @@
     <h2>Hi, I'm Jin!</h2>
     <p>
        I'm a designer, software developer and a data visualization enthusiast. I love
-      creating exploring new perspective of data and visualize them in intuitive and beautiful visualizations.
+      creating exploring new perspective of data and show them in intuitive and beautiful visualizations.
       My research interest is to develop interactive tools to facilitate decision-making in complex social systems.
     </p>
   </div>
