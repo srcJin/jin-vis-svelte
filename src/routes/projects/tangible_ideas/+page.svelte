@@ -18,8 +18,8 @@
 
   <div class="responsive-iframe">
     <iframe 
-      width="560" 
-      height="315" 
+      width="100%" 
+      height="500px" 
       src="https://www.youtube.com/embed/RS2zWsu6XYI" 
       title="YouTube video player" 
       frameborder="0" 
