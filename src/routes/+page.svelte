@@ -16,8 +16,7 @@
   <div class="text-container">
     <h2>Hi, I'm Jin!</h2>
     <p>
-       I'm a designer, software developer and a data visualization enthusiast. I love
-      creating exploring new perspective of data and show them in intuitive and beautiful visualizations.
+       I'm a designer, software developer and a data visualization enthusiast. I love creating innovative visualizations, exploring new perspectives of data, and illustrating them in intuitive and informative ways.
       My research interest is to develop interactive tools to facilitate decision-making in complex social systems.
     </p>
   </div>
