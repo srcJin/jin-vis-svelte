@@ -70,6 +70,16 @@
         "featured": false
     },
     {
+        "title": "Tangible Ideas",
+        "image": "/images/projects/tangible_ideas/tangible_small_2.gif",
+        "link": "/projects/tangible-ideas",
+        "category": "Projects",
+        "type": "Web Applications",
+        "year": "2022",
+        "description": "A tangible interface for collaborative brainstroming.",
+        "featured": true
+    },
+    {
         "title": "Silkroad Urbanism",
         "image": "/images/projects/silkroad_urbanism/SilkroadUrbanism5.png",
         "link": "/projects/silkroad_urbanism",
@@ -99,6 +109,7 @@
         "description": "A GIS based project that visualizes the typologies of land value pattern and its related urban morphology of Boston, MA.",
         "featured": false
     },
+
     {
         "title": "Communicate with Data",
         "image": "/images/projects/communicate_with_data/communicate_with_data.png",

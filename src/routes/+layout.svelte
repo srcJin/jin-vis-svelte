@@ -18,6 +18,7 @@
         { type: "link", url: base + "/projects/cre8ors", title: "Cre8ors" },
         { type: "link", url: base + "/projects/covid_map", title: "Covid Risk Level Map" },
         { type: "link", url: base + "/projects/weehive", title: "WeeHive" },
+        { type: "link", url: base + "/projects/tangible_ideas", title: "Tangible Ideas" },
         // { type: "link", url: base + "/projects/from_sketch_to_design", title: "From Sketch to Design"},
 
         { type: "divider", title: "GIS Visualization" },
