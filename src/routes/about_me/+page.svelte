@@ -8,6 +8,9 @@
 
 
 <main>
+
+  <img src="{base}/images/Jin_Gao_CV_2024_TA.png" alt="CV_1" />
+
   <h2>Contact me</h2>
 
   <form id="contactForm" action="mailto:gaojin@mit.edu" method="GET">
@@ -23,8 +26,8 @@
     <button type="submit">Send</button>
   </form>
 
-  <img src="{base}/images/Jin_Gao_CV_2024_1.png" alt="CV_1" />
-  <img src="{base}/images/Jin_Gao_CV_2024_2.png" alt="CV_1" />
+  <!-- <img src="{base}/images/Jin_Gao_CV_2024_1.png" alt="CV_1" />
+  <img src="{base}/images/Jin_Gao_CV_2024_2.png" alt="CV_1" /> -->
 
 
 </main>
