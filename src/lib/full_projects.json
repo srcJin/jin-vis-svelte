@@ -52,7 +52,7 @@
     {
         "title": "Covid Risk Level Map",
         "image": "/images/projects/covid_map/covid_reverse_loop.gif",
-        "link": "/projects/covid-risk-map",
+        "link": "/projects/covid_map",
         "category": "Projects",
         "type": "Web Applications",
         "year": "2022",
@@ -92,7 +92,7 @@
     {
         "title": "The Third Nature",
         "image": "/images/projects/the_third_nature/the_third_nature.png",
-        "link": "/projects/third-nature",
+        "link": "/projects/the_third_nature",
         "category": "Projects",
         "type": "GIS Visualization",
         "year": "2022",
@@ -102,7 +102,7 @@
     {
         "title": "Boston Land Value",
         "image": "/images/projects/boston_land_value/boston_land_value.png",
-        "link": "/projects/boston-land-value",
+        "link": "/projects/boston_land_value",
         "category": "Projects",
         "type": "GIS Visualization",
         "year": "2022",
@@ -113,7 +113,7 @@
     {
         "title": "Communicate with Data",
         "image": "/images/projects/communicate_with_data/communicate_with_data.png",
-        "link": "/projects/communicate-with-data",
+        "link": "/projects/communicate_with_data",
         "category": "Projects",
         "type": "Visualization for Business",
         "year": "2022",
